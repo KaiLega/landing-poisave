@@ -4,8 +4,14 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Feature from './components/Feature'
 import FAQ from './components/FAQ'
+import ComingSoon from './components/ComingSoon'
+import { COMING_SOON } from './config'
 
 export default function App(){
+  if (COMING_SOON) {
+    return <ComingSoon />
+  }
+
   return (
     <div className="font-display">
       <Header />

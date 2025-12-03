@@ -41,6 +41,31 @@ html {
               radial-gradient(800px 400px at 90% 0%, rgba(255,59,107,.18), transparent);
 }
 
+.coming-anim {
+  background-size: 300% 300%;
+  animation: gradientShift 16s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.cursor-star {
+  position: absolute;
+  color: #fff;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.55));
+  animation: starTrail 0.7s ease-out forwards;
+  opacity: var(--o, 1);
+}
+
+@keyframes starTrail {
+  0% { opacity: var(--o, 0.9); transform: translate(-50%, -50%) scale(var(--s, 1)); }
+  60% { opacity: 1; transform: translate(-50%, -60%) scale(calc(var(--s, 1) * 1.25)); }
+  100% { opacity: 0; transform: translate(-50%, -80%) scale(calc(var(--s, 1) * 0.8)); }
+}
+
 .credit-link {
   position: relative;
   transition: background-position 0.4s ease, color 0.2s ease;
