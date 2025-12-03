@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --grad: linear-gradient(90deg, #ff3b6b 0%, #6a35ff 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 font-medium transition;
+}
+.btn-primary {
+  @apply text-white shadow-soft;
+  background: var(--grad);
+}
+.btn-outline {
+  @apply border border-black/10 bg-white hover:bg-black/5;
+}
+.section {
+  @apply py-16 md:py-24;
+}
+.heading {
+  @apply text-3xl md:text-4xl font-bold tracking-tight;
+}
+.subtle {
+  @apply text-slate-600;
+}
+.card {
+  @apply rounded-3xl bg-white shadow-soft p-6;
+}
+.nav-blur {
+  backdrop-filter: saturate(180%) blur(8px);
+  background-color: rgba(255,255,255,.85);
+}
+.hero-grad {
+  background: radial-gradient(1200px 600px at 30% -20%, rgba(106,53,255,.22), transparent),
+              radial-gradient(800px 400px at 90% 0%, rgba(255,59,107,.18), transparent);
+}
+
+.credit-link {
+  position: relative;
+  transition: background-position 0.4s ease, color 0.2s ease;
+}
+.credit-link:hover {
+  background-image: var(--grad);
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: credit-sweep 0.6s ease forwards;
+}
+@keyframes credit-sweep {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
