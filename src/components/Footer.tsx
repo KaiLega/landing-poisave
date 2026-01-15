@@ -13,6 +13,8 @@ export default function Footer(){
           <a href="#features">Features</a>
           <a href="#faq">FAQ</a>
           <a href="#download">Download</a>
+          <a href="/#/privacy">Privacy</a>
+          <a href="/#/cookies">Cookie</a>
         </div>
       </div>
     </footer>

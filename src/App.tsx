@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { MapPin, Link as LinkIcon, Layers, ShieldCheck, Sparkles, Wand2 } from 'lucide-react'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -6,10 +6,44 @@ import Feature from './components/Feature'
 import FAQ from './components/FAQ'
 import ComingSoon from './components/ComingSoon'
 import { COMING_SOON } from './config'
+import CookieBanner from './components/CookieBanner'
+import PrivacyPolicy from './components/PrivacyPolicy'
+import CookiePolicy from './components/CookiePolicy'
 
 export default function App(){
+  const getRoute = () => window.location.hash.replace(/^#\/?/, '')
+  const [route, setRoute] = useState(getRoute())
+
+  useEffect(() => {
+    const handler = () => setRoute(getRoute())
+    window.addEventListener('hashchange', handler)
+    return () => window.removeEventListener('hashchange', handler)
+  }, [])
+
   if (COMING_SOON) {
     return <ComingSoon />
+  }
+
+  if (route === 'privacy') {
+    return (
+      <div className="font-display">
+        <Header />
+        <PrivacyPolicy />
+        <Footer />
+        <CookieBanner />
+      </div>
+    )
+  }
+
+  if (route === 'cookies') {
+    return (
+      <div className="font-display">
+        <Header />
+        <CookiePolicy />
+        <Footer />
+        <CookieBanner />
+      </div>
+    )
   }
 
   return (
@@ -137,6 +171,7 @@ export default function App(){
       </section>
 
       <Footer />
+      <CookieBanner />
     </div>
   )
 }
