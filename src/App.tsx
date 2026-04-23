@@ -1,17 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import {
-  ArrowRight,
-  Check,
-  Link as LinkIcon,
-  Layers,
-  MapPin,
-  ShieldCheck,
-  Sparkles,
-  Wand2,
-} from 'lucide-react'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Feature from './components/Feature'
 import FAQ from './components/FAQ'
 import ComingSoon from './components/ComingSoon'
 import { COMING_SOON } from './config'
@@ -20,9 +9,13 @@ import PrivacyPolicy from './components/PrivacyPolicy'
 import CookiePolicy from './components/CookiePolicy'
 import ScreensCarousel from './components/ScreensCarousel'
 import TrackShowcase from './components/TrackShowcase'
-import SectionWaves from './components/SectionWaves'
 import BannerCTA from './components/BannerCTA'
 import HowItWorksSection from './components/HowItWorksSection'
+import HeroSection from './components/HeroSection'
+import DiscoverSection from './components/DiscoverSection'
+import CollectorsSection from './components/CollectorsSection'
+import FeaturesOverviewSection from './components/FeaturesOverviewSection'
+import PricingSection from './components/PricingSection'
 
 const heroBenefits = [
   'Paste links from Instagram, TikTok and more',
@@ -180,83 +173,12 @@ export default function App() {
   }
 
   return (
-    <div className="font-display bg-white text-slate-900">
+    <div className="bg-white font-display text-slate-900">
       <Header />
 
       <div className="hero-discover-stack">
-        <section className="hero-seven">
-          <div className="mx-auto max-w-6xl px-4 grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
-            <div className="hero-visual order-2 lg:order-1">
-              <div className="hero-img">
-                <img src="/img/intro/intro1.png" alt="Poisave mobile app preview" />
-              </div>
-              <div className="hero-floating-card hero-floating-card--top">Paste. Preview. Save.</div>
-              <div className="hero-floating-card hero-floating-card--bottom">
-                <MapPin className="h-4 w-4" />
-                128 places saved
-              </div>
-            </div>
-
-            <div className="hero-copy order-1 lg:order-2">
-              <span className="section-kicker section-kicker--light">poisave mobile app</span>
-              <h1 className="hero-title">More than your map app</h1>
-              <p className="hero-text">
-                Save the places you discover on social media, clean up the details, and organize them inside a map that is finally useful.
-              </p>
-
-              <ul className="hero-benefits">
-                {heroBenefits.map((item) => (
-                  <li key={item}>
-                    <Check className="h-4 w-4" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="hero-stores-badge">
-                <a href="#download" className="store">
-                  <img
-                    className="appstore-original"
-                    src="/img/apple/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
-                    alt="Download on the App Store"
-                  />
-                </a>
-
-                <a href="#download" className="store">
-                  <img
-                    className="googleplay-original"
-                    src="/img/android/GetItOnGooglePlay_Badge_Web_color_English.svg"
-                    alt="Get it on Google Play"
-                  />
-                </a>
-
-                <span className="os-version">* Available for iOS and Android</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="features" className="section section-wave">
-          <SectionWaves />
-          <div className="mx-auto max-w-6xl px-4">
-            <div className="section-copy section-copy--center">
-              <span className="section-kicker">Discover faster</span>
-              <h2 className="heading">A landing structure inspired by the reference, rebuilt around poisave.</h2>
-              <p className="section-lead">
-                The new home leans into a mobile-first app presentation: stronger hero, alternating feature bands and a screenshot carousel.
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {quickHighlights.map((item) => (
-                <article key={item.title} className="contrast-card">
-                  <h3>{item.title}</h3>
-                  <p>{item.desc}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <HeroSection benefits={heroBenefits} />
+        <DiscoverSection highlights={quickHighlights} />
       </div>
 
       <HowItWorksSection steps={workflowSteps} />
@@ -269,132 +191,22 @@ export default function App() {
         href="#download"
       />
 
-      <section className="section">
-        <div className="mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 items-center">
-          <div className="split-showcase split-showcase--dark">
-            <img src="/img/intro/intro2.png" alt="Poisave saved place details on mobile" />
-          </div>
-
-          <div>
-            <span className="section-kicker">Built for collectors</span>
-            <h2 className="heading">From saved posts to real plans, without the chaos.</h2>
-            <p className="section-lead">
-              Instead of leaving recommendations buried in chat threads, bookmarks or screenshots, you can collect them in one place and return when you need them.
-            </p>
-
-            <ul className="checklist">
-              <li>
-                <Check className="h-4 w-4" />
-                Keep one source of truth for restaurants, cafes and travel spots.
-              </li>
-              <li>
-                <Check className="h-4 w-4" />
-                Review details before saving so the map stays clean.
-              </li>
-              <li>
-                <Check className="h-4 w-4" />
-                Open your saved places visually instead of hunting through links.
-              </li>
-            </ul>
-
-            <a className="btn btn-primary mt-8 inline-flex" href="#download">
-              Explore plans
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
-          </div>
-        </div>
-      </section>
+      <CollectorsSection />
 
       <section id="screens" className="section screens-section">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="section-copy section-copy--center">
-            <span className="section-kicker">App preview</span>
-            <h2 className="heading">Awesome Screenshots</h2>
-            <p className="section-lead">
-              A centered carousel replaces the old static grid and matches the direction of the theme reference much more closely.
-            </p>
-          </div>
-
+        <div className="mx-auto px-4 max-w-6xl">
           <ScreensCarousel slides={carouselSlides} />
         </div>
       </section>
 
       <TrackShowcase variant={TRACK_SHOWCASE_VARIANT} />
 
-      <section className="section">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="section-copy section-copy--center">
-            <span className="section-kicker">Everything you need</span>
-            <h2 className="heading">Everything you need</h2>
-            <p className="section-lead">Fast capture, smart dedupe, offline cache, and global maps.</p>
-          </div>
+      <FeaturesOverviewSection />
 
-          <div className="mt-10 grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-            <Feature title="One-tap capture" desc="Paste a link, we handle the rest." icon={<LinkIcon className="h-6 w-6" />} />
-            <Feature title="Smart de-dup" desc="Avoid duplicate places automatically." icon={<Layers className="h-6 w-6" />} />
-            <Feature title="Private by default" desc="Your data stays on your device." icon={<ShieldCheck className="h-6 w-6" />} />
-            <Feature title="Works worldwide" desc="From Rome to Tokyo, it just works." icon={<MapPin className="h-6 w-6" />} />
-            <Feature title="Clean design" desc="Beautiful, modern interface." icon={<Sparkles className="h-6 w-6" />} />
-            <Feature title="Automatic details" desc="Titles, categories, and more in seconds." icon={<Wand2 className="h-6 w-6" />} />
-          </div>
-        </div>
-      </section>
-
-      <section id="download" className="section bg-lightgrey">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="section-copy section-copy--center">
-            <span className="section-kicker">Pricing</span>
-            <h2 className="heading">Go Premium. Be Happy</h2>
-            <p className="section-lead">
-              Keep the two-plan structure simple for now: a free starting point and a premium tier for heavier usage.
-            </p>
-          </div>
-
-          <div className="mt-12 grid lg:grid-cols-2 gap-6">
-            {pricingPlans.map((plan) => (
-              <article key={plan.name} className={`plan-card${plan.featured ? ' plan-card--featured' : ''}`}>
-                <div className="plan-card__topline">{plan.label}</div>
-                <div className="plan-card__head">
-                  <div>
-                    <h3>{plan.name}</h3>
-                    <p>{plan.description}</p>
-                  </div>
-                  <div className="plan-card__price">{plan.price}</div>
-                </div>
-
-                <ul className="plan-card__list">
-                  {plan.items.map((item) => (
-                    <li key={item}>
-                      <Check className="h-4 w-4" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <a href="#faq" className={`btn ${plan.featured ? 'btn-primary' : 'btn-outline'} mt-8 inline-flex`}>
-                  {plan.featured ? 'Join premium waitlist' : 'Start with free'}
-                </a>
-              </article>
-            ))}
-          </div>
-
-          <div className="store-row">
-            <img
-              src="/img/apple/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
-              className="store-row__badge"
-              alt="Download on the App Store"
-            />
-            <img
-              src="/img/android/GetItOnGooglePlay_Badge_Web_color_English.svg"
-              className="store-row__badge"
-              alt="Get it on Google Play"
-            />
-          </div>
-        </div>
-      </section>
+      <PricingSection plans={pricingPlans} />
 
       <section id="faq" className="section faq-section coming-anim">
-        <div className="mx-auto max-w-6xl px-4">
+        <div className="mx-auto px-4 max-w-6xl">
           <div className="section-copy section-copy--center">
             <span className="section-kicker">Support</span>
             <h2 className="heading">FAQ</h2>
