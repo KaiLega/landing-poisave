@@ -1,4 +1,5 @@
 import React from 'react'
+import SectionLink from './SectionLink'
 
 type TrackShowcaseProps = {
   variant?: 'bleed' | 'panel'
@@ -22,19 +23,19 @@ export default function TrackShowcase({ variant = 'bleed' }: TrackShowcaseProps)
               </p>
 
               <div className="goal-band__stores">
-                <a href="#download" className="store store--soft">
+                <SectionLink sectionId="download" className="store store--soft">
                   <img
                     src="/img/apple/appstore-tra-white.png"
                     alt="Download on the App Store"
                   />
-                </a>
+                </SectionLink>
 
-                <a href="#download" className="store store--soft">
+                <SectionLink sectionId="download" className="store store--soft">
                   <img
                     src="/img/android/googleplay-tra-white.png"
                     alt="Get it on Google Play"
                   />
-                </a>
+                </SectionLink>
               </div>
             </div>
           </div>

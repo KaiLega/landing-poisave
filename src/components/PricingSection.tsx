@@ -1,5 +1,6 @@
 import React from 'react'
 import { Check } from 'lucide-react'
+import SectionLink from './SectionLink'
 
 type PricingPlan = {
   name: string
@@ -47,9 +48,9 @@ export default function PricingSection({ plans }: PricingSectionProps) {
                 ))}
               </ul>
 
-              <a href="#faq" className={`btn ${plan.featured ? 'btn-primary' : 'btn-outline'} mt-8 inline-flex`}>
+              <SectionLink sectionId="faq" className={`btn ${plan.featured ? 'btn-primary' : 'btn-outline'} mt-8 inline-flex`}>
                 {plan.featured ? 'Join premium waitlist' : 'Start with free'}
-              </a>
+              </SectionLink>
             </article>
           ))}
         </div>

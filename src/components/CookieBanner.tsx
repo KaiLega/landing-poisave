@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Cookie as LinkIcon } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { ROUTES } from '../routes'
 
 const STORAGE_KEY = 'poisave_cookie_consent'
 const LANG_KEY = 'poisave_cookie_lang'
@@ -158,13 +160,13 @@ export default function CookieBanner(){
         <div className="bg-white shadow-2xl p-6 md:p-8 rounded-3xl w-full max-w-4xl">
           <div className="flex justify-between items-start gap-4">
             <div className="space-y-2">
-              <a
+              <Link
                 className="font-semibold text-slate-500 hover:text-slate-700 text-sm"
-                href="/#/cookies"
+                to={ROUTES.cookies}
                 onClick={() => setVisible(false)}
               >
                 {t.fullPolicy}
-              </a>
+              </Link>
               <h2 className="font-bold text-slate-900 text-2xl md:text-3xl">{t.title}</h2>
             </div>
             <div className="flex gap-2">

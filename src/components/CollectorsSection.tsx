@@ -1,5 +1,6 @@
 import React from 'react'
 import { ArrowRight, Check } from 'lucide-react'
+import SectionLink from './SectionLink'
 
 export default function CollectorsSection() {
   return (
@@ -31,10 +32,10 @@ export default function CollectorsSection() {
             </li>
           </ul>
 
-          <a className="inline-flex mt-8 btn btn-primary" href="#download">
+          <SectionLink sectionId="download" className="inline-flex mt-8 btn btn-primary">
             Explore plans
             <ArrowRight className="ml-2 w-4 h-4" />
-          </a>
+          </SectionLink>
         </div>
       </div>
     </section>

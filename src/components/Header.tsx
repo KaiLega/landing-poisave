@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import SectionLink from './SectionLink'
+import { ROUTES } from '../routes'
 
-export default function Header(){
+type HeaderProps = {
+  forceSticky?: boolean
+}
+
+export default function Header({ forceSticky = false }: HeaderProps){
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -11,34 +18,35 @@ export default function Header(){
   }, [])
 
   const items = [
-    {href:'#features', label:'Features'},
-    {href:'#how', label:'How it works'},
-    {href:'#screens', label:'Screens'},
-    {href:'#faq', label:'FAQ'},
-    {href:'#download', label:'Download'}
+    {sectionId: 'features', label:'Features'},
+    {sectionId: 'how', label:'How it works'},
+    {sectionId: 'screens', label:'Screens'},
+    {sectionId: 'faq', label:'FAQ'},
+    {sectionId: 'download', label:'Download'}
   ]
+  const showSticky = forceSticky || isScrolled
   return (
-    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? 'nav-blur border-b border-white/20' : 'border-b border-transparent bg-transparent'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${showSticky ? 'nav-blur border-b border-white/20' : 'border-b border-transparent bg-transparent'}`}>
       <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
-        <a href="#" className="header-brand flex items-center gap-2 font-semibold">
+        <Link to={ROUTES.home} className="header-brand flex items-center gap-2 font-semibold">
           <img
-            src={isScrolled ? "/img/logo.png" : "/img/poisave-logo-horizontal-light.png"}
+            src={showSticky ? "/img/logo.png" : "/img/poisave-logo-horizontal-light.png"}
             className="header-brand__img"
             alt="poisave"
           />
-        </a>
+        </Link>
         <nav className="hidden md:flex items-center gap-7 text-base font-medium">
           {items.map(it => (
-            <a
-              key={it.href}
-              href={it.href}
-              className={`transition-colors ${isScrolled ? 'text-slate-700/85 hover:text-slate-950' : 'text-white hover:text-white'}`}
+            <SectionLink
+              key={it.sectionId}
+              sectionId={it.sectionId}
+              className={`transition-colors ${showSticky ? 'text-slate-700/85 hover:text-slate-950' : 'text-white hover:text-white'}`}
             >
               {it.label}
-            </a>
+            </SectionLink>
           ))}
         </nav>
-        <a className={`btn header-cta ${isScrolled ? 'btn-primary' : 'btn-glass text-white'}`} href="#download">Get the app</a>
+        <SectionLink sectionId="download" className={`btn header-cta ${showSticky ? 'btn-primary' : 'btn-glass text-white'}`}>Get the app</SectionLink>
       </div>
     </header>
   )

@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 type BannerCTAProps = {
   eyebrow?: string
   title: string
   description?: string
   buttonLabel: string
-  href: string
+  to: string
 }
 
 export default function BannerCTA({
@@ -13,7 +14,7 @@ export default function BannerCTA({
   title,
   description,
   buttonLabel,
-  href,
+  to,
 }: BannerCTAProps) {
   return (
     <section className="banner-cta coming-anim">
@@ -22,9 +23,9 @@ export default function BannerCTA({
         <span className="banner-cta__eyebrow">{eyebrow}</span>
         <h2 className="banner-cta__title">{title}</h2>
         {description ? <p className="banner-cta__description">{description}</p> : null}
-        <a href={href} className="banner-cta__button">
+        <Link to={to} className="banner-cta__button">
           {buttonLabel}
-        </a>
+        </Link>
       </div>
     </section>
   )
