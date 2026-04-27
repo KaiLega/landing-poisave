@@ -26,7 +26,7 @@ export default function PricingSection({ plans }: PricingSectionProps) {
           <span className="section-kicker">Pricing</span>
           <h2 className="heading">Start free, upgrade to PoiSave Premium</h2>
           <p className="section-lead">
-            Save places for free, then unlock unlimited saved places, cloud sync, no ads and advanced map customization.
+            Save places for free, then unlock unlimited saved places, cloud sync, no ads and advanced map customization. — Premium is where it gets powerful.
           </p>
         </div>
 

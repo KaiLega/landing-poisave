@@ -39,7 +39,7 @@ Restaurant with a view of the Colosseum, great for date nights or solo dinners. 
 
         <div>
           <span className="section-kicker">Built for collectors</span>
-          <h2 className="heading">From saved posts to real plans, without the chaos.</h2>
+          <h2 className="heading">From saved posts to real plans, without losing them in chats, bookmarks or screenshots</h2>
           <p className="section-lead">
             Instead of leaving recommendations buried in chat threads, bookmarks or screenshots, you can collect them in one place and return when you need them.
           </p>

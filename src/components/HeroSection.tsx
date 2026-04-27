@@ -13,21 +13,23 @@ export default function HeroSection({ benefits }: HeroSectionProps) {
         <div className="order-2 lg:order-1 hero-visual">
           <div className="hero-img">
             <img src="/img/intro/intro1.png" alt="Poisave mobile app preview" />
-          </div>
-          <div className="hero-floating-card--top hero-floating-card">
-            Paste → Edit → Save
-          </div>
-          <div className="hero-floating-card--bottom hero-floating-card">
-            <MapPin className="w-4 h-4 text-purple-600" />
-            Places saved to your map
+
+            <div className="hero-floating-card--top hero-floating-card">
+              Paste → Edit → Save
+            </div>
+
+            <div className="hero-floating-card--bottom hero-floating-card">
+              <MapPin className="w-4 h-4 text-purple-600" />
+              Places saved to your map
+            </div>
           </div>
         </div>
 
         <div className="order-1 lg:order-2 hero-copy">
           <span className="section-kicker section-kicker--light">poisave mobile app</span>
-          <h1 className="hero-title">More than your map app</h1>
+          <h1 className="hero-title">Save places from Instagram, TikTok and more on your personal map</h1>
           <p className="hero-text">
-            Save the places you discover on social media, clean up the details, and organize them inside a map that is finally useful.
+            Turn social posts into saved map pins, clean up the details, and organize restaurants, cafes and travel spots in one useful place.
           </p>
 
           <ul className="hero-benefits">
