@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Design tokens */
 :root {
   --grad: linear-gradient(90deg, #ff3b6b 0%, #6a35ff 100%);
   --grad-diag: linear-gradient(135deg, #ff3b6b 0%, #6a35ff 100%);
@@ -17,6 +18,7 @@
   --glass-shadow: 0 28px 60px -36px rgba(15, 23, 42, 0.45);
 }
 
+/* Base */
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -29,6 +31,7 @@ body {
   overflow-x: hidden;
 }
 
+/* Shared UI */
 .btn {
   @apply inline-flex justify-center items-center px-5 py-3 border rounded-full font-medium transition duration-200;
   border-color: transparent;
@@ -85,6 +88,7 @@ body {
   backdrop-filter: blur(18px) saturate(180%);
 }
 
+/* Header */
 .nav-blur {
   backdrop-filter: saturate(180%) blur(18px);
   background:
@@ -110,6 +114,7 @@ body {
   min-width: 152px;
 }
 
+/* Section typography */
 .section-copy {
   @apply max-w-3xl;
 }
@@ -150,6 +155,7 @@ body {
   backdrop-filter: blur(16px) saturate(180%);
 }
 
+/* Hero */
 .hero-discover-stack {
   position: relative;
   isolation: isolate;
@@ -168,13 +174,15 @@ body {
   padding-top: 128px;
   padding-bottom: 140px;
   color: white;
+
   background-image: url('/img/aperitivo.png');
-  background-position: bottom center;
-  background-size: 100% auto;
+  background-size: cover;
+  background-position: center bottom;
   background-repeat: no-repeat;
+
   z-index: 2;
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 105vh;
+  min-height: 105svh;
 }
 
 .hero-copy {
@@ -263,8 +271,8 @@ body {
 }
 
 .hero-floating-card--top {
-  top: 23%;
-  left: -3%;
+  top: 20%;
+  left: -13%;
   transform: rotate(-7deg);
   background: linear-gradient(135deg, #ff4fd8, #ff4fd8, #5a00d1);
   -webkit-background-clip: text;
@@ -273,8 +281,8 @@ body {
 }
 
 .hero-floating-card--bottom {
-  right: -5%;
-  bottom: 35%;
+  right: -25%;
+  bottom: 20%;
   transform: rotate(6deg);
   background: linear-gradient(135deg, #5a00d1,#ff4fd8, #ff4fd8);
   -webkit-background-clip: text;
@@ -282,6 +290,7 @@ body {
   background-clip: text;
 }
 
+/* Discover wave section */
 .section-wave {
   position: relative;
   isolation: isolate;
@@ -321,12 +330,127 @@ body {
   z-index: 1;
 }
 
+/* Before & After */
+
+.before-after {
+  position: relative;
+  overflow: hidden;
+  border-radius: 36px;
+  aspect-ratio: 3 / 2;
+  background: linear-gradient(180deg, #f8fafc, #eef2f7);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Layers */
+.before-after__layer {
+  position: absolute;
+  inset: 0;
+}
+
+.before-after__layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fondamentale */
+  object-position: center;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* AFTER layer sopra */
+.before-after__layer--after {
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+}
+
+/* Handle line */
+.before-after__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 4;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+/* Handle knob */
+.before-after__handle span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: white;
+  color: #5a00d1;
+  font-weight: 700;
+  font-size: 18px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(6px);
+}
+
+/* Range overlay */
+.before-after__range {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+}
+
+/* Hover feedback */
+.before-after:hover .before-after__handle span {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Closing text */
+.before-after__closing {
+  margin-top: 2rem;
+  text-align: center;
+  color: rgb(71 85 105);
+  font-size: 1.125rem;
+  line-height: 2rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+.before-after__layer--before img {
+  object-position: center top;
+}
+
+.before-after__layer--after img {
+  object-position: center center;
+  transition: clip-path 0.3s ease;
+}
+}
+.before-after__layer--after {
+  transition: clip-path 0.28s ease;
+}
+
+.before-after__handle {
+  transition: left 0.28s ease;
+}
+
+/* Feature cards */
 .contrast-card {
   @apply px-8 py-8 rounded-[30px];
   background: var(--glass-bg);
   border: 1px solid var(--glass-stroke);
   box-shadow: var(--glass-shadow);
   backdrop-filter: blur(18px) saturate(180%);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.contrast-card:hover {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: 0 26px 46px -34px rgba(15, 23, 42, 0.24);
+  border-color: rgba(106, 53, 255, 0.3);
 }
 
 .contrast-card h3 {
@@ -343,6 +467,7 @@ body {
     linear-gradient(180deg, rgba(246, 247, 250, 0.95), rgba(240, 240, 240, 0.92));
 }
 
+/* How it works */
 .section-flatgrey {
   position: relative;
   z-index: 0;
@@ -442,6 +567,7 @@ body {
   @apply text-slate-600 leading-7;
 }
 
+/* Split showcase and collectors */
 .split-showcase {
   @apply p-5 rounded-[36px];
   background:
@@ -518,6 +644,7 @@ body {
   @apply mt-1 text-brand-600 shrink-0;
 }
 
+/* Screens carousel */
 .screens-section {
   background-image:
     var(--page-grad),
@@ -666,6 +793,7 @@ body {
   background: #6a35ff;
 }
 
+/* Track showcase */
 .goal-band {
   position: relative;
   overflow: visible;
@@ -804,6 +932,7 @@ body {
   margin: 0;
 }
 
+/* Pricing */
 .plan-card {
   @apply px-8 py-8 rounded-[32px];
   background: var(--glass-bg);
@@ -966,6 +1095,7 @@ body {
   border-color: rgba(106, 53, 255, 0.26);
 }
 
+/* FAQ */
 .faq-grid {
   display: grid;
   gap: 1.5rem;
@@ -1035,6 +1165,7 @@ body {
   color: #ffd1e6;
 }
 
+/* Store badges */
 .store-row {
   @apply flex flex-wrap justify-center items-center gap-4 mt-10;
 }
@@ -1045,6 +1176,7 @@ body {
   width: auto;
 }
 
+/* Banner CTA */
 .coming-anim {
   background-size: 300% 300%;
   animation: gradientShift 16s ease infinite;
@@ -1131,6 +1263,7 @@ body {
   }
 }
 
+/* Cookie and small effects */
 .cursor-star {
   position: absolute;
   color: #fff;
@@ -1212,6 +1345,7 @@ body {
   }
 }
 
+/* Responsive: tablet and below */
 @media (max-width: 1024px) {
   .hero-copy,
   .hero-benefits li,
@@ -1238,6 +1372,31 @@ body {
   }
 }
 
+/* Responsive: tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-seven {
+    padding-top: 124px;
+    padding-bottom: 120px;
+    background-position: right 10% bottom 0;
+    background-size: auto 100%;
+  }
+
+  .hero-visual {
+    min-height: 460px;
+  }
+
+  .hero-floating-card--top {
+    top: 19%;
+    left: 3%;
+  }
+
+  .hero-floating-card--bottom {
+    right: 3%;
+    bottom: 22%;
+  }
+}
+
+/* Responsive: medium and up */
 @media (min-width: 768px) {
   .faq-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1245,6 +1404,7 @@ body {
   }
 }
 
+/* Responsive: desktop */
 @media (min-width: 1024px) {
   .goal-band__grid {
     grid-template-columns: 0.9fr 1.1fr;
@@ -1282,9 +1442,15 @@ body {
   }
 }
 
+/* Responsive: mobile */
 @media (max-width: 768px) {
   .section {
     @apply py-16;
+  }
+
+  .goal-band {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .section-wave {
@@ -1294,7 +1460,7 @@ body {
 
   .hero-seven {
     padding-top: 124px;
-    padding-bottom: 120px;
+    padding-bottom: 0px;
     background-position: right 10% bottom 0;
     background-size: auto 100%;
   }
@@ -1389,13 +1555,13 @@ body {
 
   .hero-floating-card--top {
     top: 19%;
-    left: 3%;
-    color:#5a00d1
+    left: -4%;
+    color: #5a00d1;
   }
 
   .hero-floating-card--bottom {
-    right: 3%;
-    bottom: 22%;
+    right: -4%;
+    bottom: 19%;
     color: #5a00d1;
   }
 
@@ -1439,6 +1605,7 @@ body {
     align-items: center;
     gap: 1rem;
     margin-top: 1.1rem;
+    margin-bottom: 3rem;
   }
 
   .carousel-dots {
