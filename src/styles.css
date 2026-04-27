@@ -448,6 +448,44 @@ body {
   backdrop-filter: none;
 }
 
+.collectors-demo {
+  position: relative;
+}
+
+.collectors-demo__typing {
+  position: absolute;
+  top: 31%;
+  left: 20%;
+  width: 60%;
+  pointer-events: none;
+}
+
+.collectors-demo__typing-text {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: pre-wrap;
+  color: #64748b;
+  font-size: clamp(0.72rem, 1vw, 0.88rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  border-right: 2px solid rgba(100, 116, 139, 0.75);
+  animation: collectors-caret 0.8s step-end infinite;
+}
+
+@keyframes collectors-caret {
+  0%,
+  49% {
+    border-right-color: rgba(100, 116, 139, 0.75);
+  }
+
+  50%,
+  100% {
+    border-right-color: transparent;
+  }
+}
+
 .split-showcase img,
 .goal-band__card img {
   display: block;
@@ -1193,6 +1231,10 @@ body {
 
   .screenshots-stage {
     height: 430px;
+  }
+
+  .collectors-demo__typing-text {
+    font-size: 0.72rem;
   }
 
   .carousel-slide {
