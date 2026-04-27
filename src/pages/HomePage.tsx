@@ -11,11 +11,12 @@ import FeaturesOverviewSection from '../components/FeaturesOverviewSection'
 import PricingSection from '../components/PricingSection'
 import FAQ from '../components/FAQ'
 import { toSectionPath } from '../routes'
+import BeforeAfter from '../components/BeforeAfter'
 
 const heroBenefits = [
   'Paste links from Instagram, TikTok and more',
-  'Clean up details before saving',
-  'Build your map for future trips',
+  'Clean up details before saving them on your map',
+  'Stop losing places you save on social media',
 ]
 
 const quickHighlights = [
@@ -197,9 +198,11 @@ export default function HomePage() {
         title="Start saving places from your favorite social apps"
         description="Get PoiSave on iOS and Android to organize restaurants, cafes, travel ideas and saved posts on your personal map."
         to={toSectionPath('download')}
-        buttonLabel="Get the app"
+        buttonLabel="Get PoiSave"
       />
 
+      <BeforeAfter />
+      
       <CollectorsSection />
 
       <section id="screens" className="section screens-section">
