@@ -20,16 +20,16 @@ const heroBenefits = [
 
 const quickHighlights = [
   {
-    title: 'Save from social',
-    desc: 'Turn inspiring posts into places you can actually revisit later.',
+    title: 'Save places from Instagram and TikTok',
+    desc: 'Paste a social link and keep the restaurant, cafe or travel spot on your map.',
   },
   {
-    title: 'Organize faster',
-    desc: 'Keep all your discoveries in one clean map instead of scattered bookmarks.',
+    title: 'Organize every point of interest',
+    desc: 'Add categories, notes and useful details instead of losing places in bookmarks.',
   },
   {
-    title: 'Plan visually',
-    desc: 'See saved spots side by side and decide where to go next in seconds.',
+    title: 'Plan from a personal map',
+    desc: 'Compare saved places nearby and choose where to go next without switching apps.',
   },
 ]
 
@@ -43,8 +43,8 @@ const workflowSteps = [
   },
   {
     index: '02',
-    title: 'Review the details',
-    description: 'Check the title, location and category so the saved place stays clean and useful later.',
+    title: 'Paste a description or upload a screenshot',
+    description: 'PoiSave extracts the useful text and saves the details needed to create your point of interest.',
     image: '/img/intro/intro2.png',
     alt: 'Poisave place detail review screen',
   },
@@ -111,38 +111,38 @@ const faqItems = [
 const carouselSlides = [
   {
     src: '/img/intro/intro1.png',
-    alt: 'Poisave home map',
-    eyebrow: 'Capture faster',
-    title: 'Paste a link and preview before saving',
-    description: 'The entry screen keeps the save flow immediate, so discoveries from social apps turn into structured places in seconds.',
+    alt: 'PoiSave map with saved place pins',
+    eyebrow: 'Map overview',
+    title: 'See all your saved places on the map',
+    description: 'Turn social finds into saved places in seconds.',
   },
   {
     src: '/img/intro/intro2.png',
-    alt: 'Poisave saved place detail',
-    eyebrow: 'Refine details',
-    title: 'Clean up the information before it hits your map',
-    description: 'Titles, categories and locations stay editable, which keeps the saved collection useful instead of becoming another messy archive.',
+    alt: 'PoiSave form for pasting a video description',
+    eyebrow: 'Custom notes',
+    title: 'Paste a description or write your own',
+    description: 'Add the details you need before saving.',
   },
   {
     src: '/img/intro/intro3.png',
-    alt: 'Poisave personal map',
-    eyebrow: 'Plan visually',
-    title: 'Open your places on a map built for decisions',
-    description: 'The mapped overview helps you compare nearby spots and turn random inspiration into an actual weekend plan.',
+    alt: 'PoiSave saved POIs list',
+    eyebrow: 'Browse collections',
+    title: 'Browse your saved places',
+    description: 'Filter your list without switching apps.',
   },
   {
     src: '/img/intro/intro4.png',
-    alt: 'Poisave saved items list',
-    eyebrow: 'Browse collections',
-    title: 'Review your saved places in one clear list',
-    description: 'Lists and filters give you another way to scan what you saved, without needing to jump between apps or screenshots.',
+    alt: 'PoiSave POI callout with place details',
+    eyebrow: 'Place details',
+    title: 'Open a pin and check the details',
+    description: 'Review notes, address and category at a glance.',
   },
   {
     src: '/img/intro/intro5.png',
-    alt: 'Poisave app collection view',
-    eyebrow: 'Stay organized',
-    title: 'Keep categories and views tidy as the map grows',
-    description: 'The product is designed to scale from a few saved spots to a personal archive of restaurants, cafes and future trips.',
+    alt: 'PoiSave stats screen',
+    eyebrow: 'Community picks',
+    title: 'See what stands out',
+    description: 'See what others like and add the places you love.',
   },
 ]
 
@@ -157,8 +157,12 @@ const pricingPlans = [
   },
   {
     name: 'Premium',
-    price: 'Coming soon',
-    label: 'For power users',
+    price: '€1.99',
+    originalPrice: '€3.99',
+    yearlyPrice: '€19.99',
+    yearlyOriginalPrice: '€39.99',
+    priceNote: 'per month',
+    label: 'Launch promo',
     description: 'Unlock the full experience with sync, customization and advanced tools.',
     items: ['Unlimited saved places', 'No ads', 'Cloud sync', 'Advanced stats', 'Map and pin customization'],
     featured: true,
@@ -189,9 +193,9 @@ export default function HomePage() {
       <HowItWorksSection steps={workflowSteps} />
 
       <BannerCTA
-        eyebrow="Join the launch"
-        title="Ready to turn saved posts into real places?"
-        description="Get on the list and be the first to try poisave when the public launch opens."
+        eyebrow="Download PoiSave"
+        title="Start saving places from your favorite social apps"
+        description="Get PoiSave on iOS and Android to organize restaurants, cafes, travel ideas and saved posts on your personal map."
         to={toSectionPath('download')}
         buttonLabel="Get the app"
       />

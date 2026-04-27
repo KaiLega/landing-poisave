@@ -16,10 +16,10 @@ export default function DiscoverSection({ highlights }: DiscoverSectionProps) {
       <SectionWaves />
       <div className="mx-auto px-4 max-w-6xl">
         <div className="section-copy section-copy--center">
-          <span className="section-kicker">Discover faster</span>
-          <h2 className="heading">Save every place you discover online, organized on your map.</h2>
+          <span className="section-kicker">Save places from social media</span>
+          <h2 className="heading">Organize restaurants, cafes and travel spots on your personal map</h2>
           <p className="section-lead">
-            The new home leans into a mobile-first app presentation: stronger hero, alternating feature bands and a screenshot carousel.
+            PoiSave helps you turn Instagram, TikTok and web discoveries into saved points of interest you can find, edit and plan from later.
           </p>
         </div>
 

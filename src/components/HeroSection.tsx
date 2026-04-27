@@ -14,10 +14,12 @@ export default function HeroSection({ benefits }: HeroSectionProps) {
           <div className="hero-img">
             <img src="/img/intro/intro1.png" alt="Poisave mobile app preview" />
           </div>
-          <div className="hero-floating-card--top hero-floating-card">Paste. Preview. Save.</div>
+          <div className="hero-floating-card--top hero-floating-card">
+            Paste → Edit → Save
+          </div>
           <div className="hero-floating-card--bottom hero-floating-card">
-            <MapPin className="w-4 h-4" />
-            128 places saved
+            <MapPin className="w-4 h-4 text-purple-600" />
+            Places saved to your map
           </div>
         </div>
 

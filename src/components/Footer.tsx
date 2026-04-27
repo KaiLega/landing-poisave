@@ -12,14 +12,18 @@ export default function Footer(){
           <img src="/img/logo.png" className="h-6" alt="" />
           <span>© {year}</span> <a className="credit-link" href="https://yugaweb.com">Designed by Yuga Web</a>
         </div>
-        <div className="flex items-center gap-4">
-          <SectionLink sectionId="features">Features</SectionLink>
-          <SectionLink sectionId="faq">FAQ</SectionLink>
-          <SectionLink sectionId="download">Download</SectionLink>
-          <Link to={ROUTES.deleteAccount}>Delete account</Link>
-          <Link to={ROUTES.terms}>Terms of Use</Link>
-          <Link to={ROUTES.privacy}>Privacy Policy</Link>
-          <Link to={ROUTES.cookies}>Cookie Policy</Link>
+        <div className="flex md:flex-row flex-col items-center gap-3 md:gap-4">
+          <div className="flex items-center gap-4">
+            <SectionLink sectionId="how-it-works">How it Works</SectionLink>
+            <SectionLink sectionId="download">Download</SectionLink>       
+            <SectionLink sectionId="faq">FAQ</SectionLink>     
+            <Link to={ROUTES.deleteAccount}>Delete account</Link>
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
+            <Link to={ROUTES.terms}>Terms of Use</Link>
+            <Link to={ROUTES.privacy}>Privacy Policy</Link>
+            <Link to={ROUTES.cookies}>Cookie Policy</Link>
+          </div>
         </div>
       </div>
     </footer>

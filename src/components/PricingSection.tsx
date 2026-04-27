@@ -1,10 +1,13 @@
 import React from 'react'
 import { Check } from 'lucide-react'
-import SectionLink from './SectionLink'
 
 type PricingPlan = {
   name: string
   price: string
+  originalPrice?: string
+  yearlyPrice?: string
+  yearlyOriginalPrice?: string
+  priceNote?: string
   label: string
   description: string
   items: string[]
@@ -21,9 +24,9 @@ export default function PricingSection({ plans }: PricingSectionProps) {
       <div className="mx-auto px-4 max-w-6xl">
         <div className="section-copy section-copy--center">
           <span className="section-kicker">Pricing</span>
-          <h2 className="heading">Go Premium. Be Happy</h2>
+          <h2 className="heading">Start free, upgrade to PoiSave Premium</h2>
           <p className="section-lead">
-            Keep the two-plan structure simple for now: a free starting point and a premium tier for heavier usage.
+            Save places for free, then unlock unlimited saved places, cloud sync, no ads and advanced map customization.
           </p>
         </div>
 
@@ -31,26 +34,40 @@ export default function PricingSection({ plans }: PricingSectionProps) {
           {plans.map((plan) => (
             <article key={plan.name} className={`plan-card${plan.featured ? ' plan-card--featured' : ''}`}>
               <div className="plan-card__topline">{plan.label}</div>
-              <div className="plan-card__head">
-                <div>
+              <div className="plan-card__body">
+                <div className="plan-card__copy">
                   <h3>{plan.name}</h3>
                   <p>{plan.description}</p>
+
+                  <ul className="plan-card__list">
+                    {plan.items.map((item) => (
+                      <li key={item}>
+                        <Check className="w-4 h-4" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="plan-card__price">{plan.price}</div>
+
+                <div className="plan-card__price">
+                  {(plan.originalPrice || plan.priceNote || plan.yearlyPrice) && (
+                    <div className="plan-card__price-row">
+                      <span className="plan-card__price-term">Monthly</span>
+                      {plan.originalPrice && <span className="plan-card__price-original">{plan.originalPrice}</span>}
+                    </div>
+                  )}
+                  <span className="plan-card__price-current">{plan.price}</span>
+                  {plan.priceNote && <small>{plan.priceNote}</small>}
+
+                  {plan.yearlyPrice && (
+                    <div className="plan-card__price-yearly">
+                      <span className="plan-card__price-term">Annual</span>
+                      <strong>{plan.yearlyPrice}</strong>
+                      {plan.yearlyOriginalPrice && <del>{plan.yearlyOriginalPrice}</del>}
+                    </div>
+                  )}
+                </div>
               </div>
-
-              <ul className="plan-card__list">
-                {plan.items.map((item) => (
-                  <li key={item}>
-                    <Check className="w-4 h-4" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <SectionLink sectionId="faq" className={`btn ${plan.featured ? 'btn-primary' : 'btn-outline'} mt-8 inline-flex`}>
-                {plan.featured ? 'Join premium waitlist' : 'Start with free'}
-              </SectionLink>
             </article>
           ))}
         </div>

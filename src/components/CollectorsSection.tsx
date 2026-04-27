@@ -4,7 +4,7 @@ import SectionLink from './SectionLink'
 
 export default function CollectorsSection() {
   const typingText = `Restaurant name
-via example 3, Rome
+Example street 3, Rome
 Cost: 20€
 Restaurant with a view of the Colosseum, great for date nights or solo dinners. The carbonara is a must-try!`
   const [visibleChars, setVisibleChars] = useState(0)

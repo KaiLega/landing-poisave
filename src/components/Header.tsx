@@ -19,23 +19,23 @@ export default function Header({ forceSticky = false }: HeaderProps){
 
   const items = [
     {sectionId: 'features', label:'Features'},
-    {sectionId: 'how', label:'How it works'},
+    {sectionId: 'how-it-works', label:'How it works'},
     {sectionId: 'screens', label:'Screens'},
-    {sectionId: 'faq', label:'FAQ'},
-    {sectionId: 'download', label:'Download'}
+    {sectionId: 'download', label:'Download'},
+    {sectionId: 'faq', label:'FAQ'}
   ]
   const showSticky = forceSticky || isScrolled
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${showSticky ? 'nav-blur border-b border-white/20' : 'border-b border-transparent bg-transparent'}`}>
-      <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
-        <Link to={ROUTES.home} className="header-brand flex items-center gap-2 font-semibold">
+      <div className="flex justify-between items-center mx-auto px-4 max-w-6xl h-16">
+        <Link to={ROUTES.home} className="flex items-center gap-2 font-semibold header-brand">
           <img
             src={showSticky ? "/img/logo.png" : "/img/poisave-logo-horizontal-light.png"}
             className="header-brand__img"
             alt="poisave"
           />
         </Link>
-        <nav className="hidden md:flex items-center gap-7 text-base font-medium">
+        <nav className="hidden md:flex items-center gap-7 font-medium text-base">
           {items.map(it => (
             <SectionLink
               key={it.sectionId}

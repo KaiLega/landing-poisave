@@ -13,8 +13,8 @@ export default function HowItWorksSection({ steps }: { steps: Step[] }) {
   const activeStep = steps[active] ?? steps[0]
 
   return (
-    <section id="how" className="section section-flatgrey">
-      <div className="mx-auto max-w-6xl px-4">
+    <section id="how-it-works" className="section section-flatgrey">
+      <div className="mx-auto px-4 max-w-6xl">
         <div className="how-it-works">
           <div className="how-it-works__content">
             <span className="section-kicker">How it works</span>
