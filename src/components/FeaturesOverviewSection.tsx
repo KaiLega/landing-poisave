@@ -4,7 +4,7 @@ import Feature from './Feature'
 
 export default function FeaturesOverviewSection() {
   return (
-    <section className="section">
+    <section id="features" className="section">
       <div className="mx-auto px-4 max-w-6xl">
         <div className="section-copy section-copy--center">
           <span className="section-kicker">Core features</span>

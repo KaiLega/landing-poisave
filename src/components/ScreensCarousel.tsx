@@ -58,7 +58,9 @@ export default function ScreensCarousel({ slides }: { slides: Slide[] }) {
       onTouchEnd={handleTouchEnd}
       onTouchCancel={() => setTouchStartX(null)}
     >
-      <div className="carousel-copy carousel-copy--top">
+      <div className="carousel-copy--top carousel-copy">
+        <h2 className="heading">See PoiSave in action</h2>
+        <br />
         <span className="carousel-copy__eyebrow">{activeSlide.eyebrow}</span>
         <h3 className="carousel-copy__title">{activeSlide.title}</h3>
       </div>
@@ -82,39 +84,39 @@ export default function ScreensCarousel({ slides }: { slides: Slide[] }) {
         })}
       </div>
 
-      <div className="carousel-copy carousel-copy--bottom">
+      <div className="carousel-copy--bottom carousel-copy">
         <p className="carousel-copy__description">{activeSlide.description}</p>
       </div>
 
       <div className="carousel-controls">
         <button
           type="button"
-          className="carousel-button carousel-button--left"
+          className="carousel-button--left carousel-button"
           onClick={goToPrevious}
-          aria-label="Previous screenshot"
+          aria-label="Previous app preview"
         >
-          <ChevronLeft className="h-5 w-5" />
+          <ChevronLeft className="w-5 h-5" />
         </button>
 
-        <div className="carousel-dots" aria-label="Screenshots navigation">
+        <div className="carousel-dots" aria-label="App preview navigation">
           {slides.map((slide, index) => (
             <button
               key={slide.src}
               type="button"
               className={`carousel-dot${index === active ? ' is-active' : ''}`}
               onClick={() => setActive(index)}
-              aria-label={`Go to screenshot ${index + 1}`}
+              aria-label={`Go App preview ${index + 1}`}
             />
           ))}
         </div>
 
         <button
           type="button"
-          className="carousel-button carousel-button--right"
+          className="carousel-button--right carousel-button"
           onClick={goToNext}
-          aria-label="Next screenshot"
+          aria-label="Next app preview"
         >
-          <ChevronRight className="h-5 w-5" />
+          <ChevronRight className="w-5 h-5" />
         </button>
       </div>
     </div>

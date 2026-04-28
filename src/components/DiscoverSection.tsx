@@ -12,7 +12,7 @@ type DiscoverSectionProps = {
 
 export default function DiscoverSection({ highlights }: DiscoverSectionProps) {
   return (
-    <section id="features" className="section section-wave">
+    <section className="section section-wave">
       <SectionWaves />
       <div className="mx-auto px-4 max-w-6xl">
         <div className="section-copy section-copy--center">

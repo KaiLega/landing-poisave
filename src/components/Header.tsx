@@ -18,9 +18,9 @@ export default function Header({ forceSticky = false }: HeaderProps){
   }, [])
 
   const items = [
-    {sectionId: 'features', label:'Features'},
     {sectionId: 'how-it-works', label:'How it works'},
-    {sectionId: 'screens', label:'Screens'},
+    {sectionId: 'app-preview', label:'App Preview'},
+    {sectionId: 'features', label:'Features'},
     {sectionId: 'download', label:'Download'},
     {sectionId: 'faq', label:'FAQ'}
   ]

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import ScreensCarousel from '../components/ScreensCarousel'
 import TrackShowcase from '../components/TrackShowcase'
 import BannerCTA from '../components/BannerCTA'
 import HowItWorksSection from '../components/HowItWorksSection'
@@ -9,9 +8,10 @@ import DiscoverSection from '../components/DiscoverSection'
 import CollectorsSection from '../components/CollectorsSection'
 import FeaturesOverviewSection from '../components/FeaturesOverviewSection'
 import PricingSection from '../components/PricingSection'
-import FAQ from '../components/FAQ'
 import { toSectionPath } from '../routes'
 import BeforeAfter from '../components/BeforeAfter'
+import AppPreviewSection from '../components/AppPreviewSection'
+import FAQSection from '../components/FAQSection'
 
 const heroBenefits = [
   'Paste links from Instagram, TikTok and more',
@@ -202,14 +202,10 @@ export default function HomePage() {
       />
 
       <BeforeAfter />
-      
+
       <CollectorsSection />
 
-      <section id="screens" className="section screens-section">
-        <div className="mx-auto px-4 max-w-6xl">
-          <ScreensCarousel slides={carouselSlides} />
-        </div>
-      </section>
+      <AppPreviewSection slides={carouselSlides} />
 
       <TrackShowcase variant={TRACK_SHOWCASE_VARIANT} />
 
@@ -217,18 +213,7 @@ export default function HomePage() {
 
       <PricingSection plans={pricingPlans} />
 
-      <section id="faq" className="section faq-section coming-anim">
-        <div className="mx-auto px-4 max-w-6xl">
-          <div className="section-copy section-copy--center">
-            <span className="section-kicker">Support</span>
-            <h2 className="heading">FAQ</h2>
-          </div>
-
-          <div className="mt-10">
-            <FAQ items={faqItems} />
-          </div>
-        </div>
-      </section>
+      <FAQSection items={faqItems} />
     </>
   )
 }
