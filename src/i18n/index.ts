@@ -3,7 +3,7 @@ import en from './locales/en'
 import es from './locales/es'
 import fr from './locales/fr'
 import it from './locales/it'
-import type { LanguageCode, LanguageOption, Messages } from './types'
+import type { LanguageCode, LanguageOption, LegalDocument, LegalSection, Messages } from './types'
 
 export const defaultLanguage: LanguageCode = 'en'
 
@@ -27,4 +27,4 @@ export function isLanguageCode(value: string | null | undefined): value is Langu
   return languages.some((language) => language.code === value)
 }
 
-export type { LanguageCode, LanguageOption, Messages }
+export type { LanguageCode, LanguageOption, LegalDocument, LegalSection, Messages }

@@ -8,6 +8,24 @@ export type LanguageOption = {
   flagSrc: string
 }
 
+export type LegalSection = {
+  title: string
+  paragraphs?: string[]
+  bullets?: string[]
+  ordered?: string[]
+  subsections?: {
+    title: string
+    paragraphs?: string[]
+    bullets?: string[]
+  }[]
+}
+
+export type LegalDocument = {
+  title: string
+  intro?: string[]
+  sections: LegalSection[]
+}
+
 export type Messages = {
   seo: {
     title: string
@@ -35,6 +53,13 @@ export type Messages = {
     backHome: string
     appStoreAlt: string
     googlePlayAlt: string
+  }
+  legal: {
+    lastUpdatedLabel: string
+    privacy: LegalDocument
+    terms: LegalDocument
+    cookies: LegalDocument
+    deleteAccount: LegalDocument
   }
   home: {
     hero: {

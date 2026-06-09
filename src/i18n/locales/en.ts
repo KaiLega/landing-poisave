@@ -28,6 +28,146 @@ const en: Messages = {
     appStoreAlt: 'Download on the App Store',
     googlePlayAlt: 'Get it on Google Play',
   },
+  legal: {
+    lastUpdatedLabel: 'Last updated',
+    privacy: {
+      title: 'Privacy Policy',
+      intro: [
+        'This Privacy Policy explains how PoiSave, operated by Yuga Web, collects, uses, shares and protects personal data when you use the app, website or related services.',
+        'If you have questions or want to exercise your privacy rights, contact us at info@yugaweb.com.',
+      ],
+      sections: [
+        {
+          title: '1. Data Controller',
+          paragraphs: ['Yuga Web, Italy, is the data controller for the processing described in this policy. Contact: info@yugaweb.com.'],
+        },
+        {
+          title: '2. Data We Collect',
+          paragraphs: ['We collect only the data needed to provide, secure and improve PoiSave. The categories may include:'],
+          subsections: [
+            { title: 'Account Data', bullets: ['Email address', 'Profile name', 'Authentication provider, such as Email, Apple or Google'] },
+            { title: 'User Content', bullets: ['Saved places (POIs), including title, category, description, address and coordinates', 'Links to social posts or web pages that you choose to save', 'Optional notes, price information, tags or personal descriptions'] },
+            { title: 'Preferences', bullets: ['Language, theme and app settings', 'Cookie and consent choices'] },
+            { title: 'Technical and Usage Data', bullets: ['App interactions, diagnostics and crash reports', 'Device identifiers that do not directly identify you', 'Usage analytics to understand how the app is used and improve performance and reliability.'] },
+            { title: 'Location Data', bullets: ['Approximate location, used to center the map and suggest nearby places when you enable this feature'] },
+            { title: 'Images and Screenshots', bullets: ['Processed only if you explicitly choose OCR or attachments', 'Text extraction is performed on-device where technically available'] },
+          ],
+        },
+        {
+          title: '3. Purposes and Legal Bases',
+          paragraphs: ['If you are in the European Economic Area, we rely on the following legal bases:'],
+          bullets: [
+            'Contract: to provide the service, save places, manage accounts and deliver paid features.',
+            'Legitimate interest: to secure the service, prevent abuse, debug issues and improve product performance.',
+            'Consent: for optional analytics, marketing communications and advertising where consent is required.',
+            'Legal obligation: when we must retain or disclose information to comply with applicable law.',
+            'For users residing in the European Economic Area, the United Kingdom or Switzerland, personal data is processed in accordance with applicable laws, including the GDPR where relevant.',
+          ],
+        },
+        {
+          title: '4. Data Sharing',
+          paragraphs: ['We do not sell your personal data. We may share data with trusted providers only when necessary to operate PoiSave:'],
+          bullets: [
+            'Firebase / Google: authentication, database, analytics and infrastructure.',
+            'Google Places API: place information and map-related data.',
+            'Apple Sign-In and Google Sign-In: authentication.',
+            'AdMob / Google: advertising for free users, where enabled and lawful.',
+            'Apple App Store and Google Play: payments, subscriptions, billing and refund handling.',
+          ],
+        },
+        {
+          title: '5. Data Retention',
+          bullets: [
+            'Account and saved place data is retained until account deletion or until it is no longer needed to provide the service.',
+            'Local device data remains until you delete it or uninstall the app.',
+            'Analytics and diagnostic data is retained for a limited period, normally up to 14 months, unless a shorter period is required.',
+            'Some information may be retained temporarily for legal, security, fraud-prevention or accounting reasons.',
+          ],
+        },
+        {
+          title: '6. International Transfers',
+          paragraphs: ['Some providers may process data outside the European Economic Area. Where required, we rely on appropriate safeguards such as standard contractual clauses or equivalent legal mechanisms.'],
+        },
+        {
+          title: '7. Your Rights',
+          paragraphs: ['Depending on your location, you may have the right to:', 'You can exercise your rights by contacting info@yugaweb.com.'],
+          bullets: ['Access your data', 'Correct inaccurate data', 'Delete your account and data', 'Restrict or object to processing', 'Request data portability', 'Withdraw consent where processing is based on consent', 'Lodge a complaint with your local data protection authority'],
+        },
+        {
+          title: '8. Account Deletion',
+          paragraphs: ['You can request deletion of your account and associated data from within the app, where available, or through https://poisave.com/#/delete-account. Once processed, your account and saved data will be removed, subject to limited legal or security retention.'],
+        },
+        {
+          title: '9. Children’s Privacy',
+          paragraphs: ['PoiSave is not intended for children under 13, or under 14 where required by local law. We do not knowingly collect personal data from children.'],
+        },
+        {
+          title: '10. Security',
+          paragraphs: ['We use reasonable technical and organizational measures to protect your data. No system is completely secure, so we cannot guarantee absolute security.'],
+        },
+        {
+          title: '11. Advertising',
+          paragraphs: ['The free version of the app may display ads. Ad providers may process device identifiers and interaction data to deliver, limit and measure ads. Where required, we request consent before personalized advertising.'],
+        },
+        {
+          title: '12. Changes to This Policy',
+          paragraphs: ['We may update this Privacy Policy from time to time. We will update the date above and, where appropriate, notify users through the app or website.'],
+        },
+        {
+          title: '13. Contact',
+          paragraphs: ['For privacy questions, contact info@yugaweb.com.'],
+        },
+      ],
+    },
+    terms: {
+      title: 'Terms of Use',
+      intro: ['Welcome to PoiSave, a service provided by Yuga Web. By downloading, accessing or using PoiSave, you agree to these Terms of Use.'],
+      sections: [
+        { title: '1. Description of the Service', paragraphs: ['PoiSave helps users save places discovered on social media or the web, organize them on a personal map, and review or edit place information before saving. The service may include free and paid features.'] },
+        { title: '2. Eligibility', paragraphs: ['You must be at least 13 years old, or the minimum legal age in your country, to use the service. If you are under 18, you must have permission from a parent or legal guardian.'] },
+        { title: '3. User Accounts', paragraphs: ['Some features may require an account. You must provide accurate information, keep credentials secure and remain responsible for activity performed through your account.'] },
+        { title: '4. User Content', paragraphs: ['You retain ownership of links, notes, saved places, categories and related content you submit. You grant us a limited license to store, process and display that content solely to provide and improve the service. You are responsible for the content you save and must not submit unlawful or rights-infringing content.'] },
+        { title: '5. Third-Party Platforms and Data Sources', paragraphs: ['PoiSave may process links from platforms such as Instagram, TikTok or other third-party services. We are not affiliated with those platforms unless expressly stated, and we are not responsible for their availability, content, policies or accuracy.'] },
+        { title: '6. Free and Premium Features', paragraphs: ['PoiSave may offer a free plan with limits and a Premium plan with additional features such as unlimited saved places, cloud sync, no ads, statistics or customization. Features, limits and prices may change over time.'] },
+        { title: '7. Subscriptions and Payments', paragraphs: ['Premium subscriptions, when available, are billed through the Apple App Store or Google Play. Renewals, cancellations, refunds and billing issues are handled through the relevant app store account.', 'Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current billing period. Prices, billing periods and available plans may vary by country, platform and store.', 'For purchases through the Apple App Store, Apple’s Standard End User License Agreement also applies: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/.', 'The purchase will be charged to the user’s Apple ID or Google Play account at confirmation of purchase.'] },
+        { title: '8. Privacy', paragraphs: ['Your use of the service is also governed by our Privacy Policy.'] },
+        { title: '9. Service Availability', paragraphs: ['We may modify, suspend or discontinue parts of the service at any time, including for maintenance, improvements, security or legal reasons. We are not liable for interruptions, data loss or third-party service failures to the maximum extent permitted by law.'] },
+        { title: '10. Prohibited Use', bullets: ['Reverse engineer, copy or misuse the app except where permitted by law.', 'Use the service for unlawful, abusive or fraudulent purposes.', 'Attempt to access data belonging to other users.', 'Upload illegal, harmful, misleading or rights-infringing content.', 'Interfere with security, infrastructure or normal operation of the service.'] },
+        { title: '11. Termination', paragraphs: ['You may stop using the service at any time. We may suspend or terminate access if these Terms are violated, if there is a security risk, or if required by law.'] },
+        { title: '12. Disclaimer and Limitation of Liability', paragraphs: ['The service is provided “as is” and “as available”. To the maximum extent permitted by law, we disclaim implied warranties and are not liable for indirect damages, loss of data, loss of profits or issues caused by third-party services. Nothing in these Terms limits liability that cannot be excluded by law.'] },
+        { title: '13. Changes to These Terms', paragraphs: ['We may update these Terms from time to time. When relevant, we will update the date above or provide notice through the app or website. Continued use after changes means you accept the updated Terms.'] },
+        { title: '14. Governing Law', paragraphs: ['These Terms are governed by the laws of Italy, without prejudice to mandatory consumer protection rules that may apply in your country of residence.'] },
+        { title: '15. Account Deletion', paragraphs: ['You can request account deletion through the app or through https://poisave.com/#/delete-account.'] },
+        { title: '16. Contact', paragraphs: ['For questions about these Terms, contact info@yugaweb.com.'] },
+      ],
+    },
+    cookies: {
+      title: 'Cookie Policy',
+      intro: ['This Cookie Policy explains how Yuga Web uses cookies and similar technologies on the PoiSave website.'],
+      sections: [
+        { title: '1. What Are Cookies?', paragraphs: ['Cookies are small text files stored on your device when you visit a website. Similar technologies may include local storage, pixels or tags. They help the website function, remember preferences and understand usage.'] },
+        { title: '2. Cookies We Use', subsections: [
+          { title: 'Essential cookies', paragraphs: ['Required for the website to function and to remember cookie preferences. They cannot be disabled through our banner.'] },
+          { title: 'Preference cookies', paragraphs: ['Used to remember choices such as language or interface preferences.'] },
+          { title: 'Analytics cookies', paragraphs: ['We may use Google Analytics 4 to understand aggregated website usage and improve performance. Analytics cookies are used only after consent where required.'] },
+          { title: 'Advertising cookies', paragraphs: ['We do not use advertising or profiling cookies on this website. The app may use advertising technologies as described in the Privacy Policy.'] },
+        ] },
+        { title: '3. Managing Preferences', paragraphs: ['You can update cookie preferences at any time using the cookie badge in the bottom-left corner of the website. You can also block or delete cookies through your browser settings.'] },
+        { title: '4. Third-Party Services', paragraphs: ['If enabled with your consent, Google Analytics may process usage data according to Google’s privacy and cookie policies.'] },
+        { title: '5. Contact', paragraphs: ['For questions about this Cookie Policy, contact info@yugaweb.com.'] },
+      ],
+    },
+    deleteAccount: {
+      title: 'Delete Account',
+      intro: ['This page explains how to permanently delete your PoiSave account and associated data.'],
+      sections: [
+        { title: '1. How to Delete Your Account', ordered: ['Open the app and sign in to your account.', 'Go to the account or settings section.', 'Tap Delete account and confirm the request.'] },
+        { title: '2. Alternative Request', paragraphs: ['If you cannot access the app, contact support@yugaweb.com from the email address associated with your account. We may request information needed to verify ownership before deleting data.'] },
+        { title: '3. What Happens After Deletion', bullets: ['Your account will be permanently deleted.', 'Your saved places and personal data will be removed from active systems.', 'Some data may be retained temporarily where required for legal, fraud-prevention, accounting or security reasons.'] },
+        { title: '4. Processing Time', paragraphs: ['Deletion requests are normally processed within 7 days after verification. Some residual backups may take longer to expire according to provider retention cycles.'] },
+      ],
+    },
+  },
   home: {
     hero: {
       imageAlt: 'PoiSave mobile app preview',
