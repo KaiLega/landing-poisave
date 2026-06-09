@@ -28,6 +28,26 @@ const fr: Messages = {
     appStoreAlt: 'Télécharger dans l’App Store',
     googlePlayAlt: 'Disponible sur Google Play',
   },
+  cookieBanner: {
+    title: 'Vos préférences de confidentialité',
+    intro: 'Ce panneau vous permet d’exprimer vos préférences concernant le traitement de vos informations personnelles. Vous pouvez revoir et modifier vos choix à tout moment via le lien dédié. Pour refuser le consentement aux traitements décrits ci-dessous, désactivez les options ou utilisez le bouton “Tout refuser”.',
+    fullPolicy: 'Voir la Politique cookies complète',
+    trackingTitle: 'Vos préférences pour les technologies de suivi',
+    trackingIntro: 'Les options de cette section permettent de personnaliser votre consentement pour les technologies de suivi utilisées aux finalités décrites. Pour plus d’informations, consultez la politique cookies. Le refus d’un consentement peut rendre certaines fonctions indisponibles.',
+    rejectAll: 'Tout refuser',
+    acceptAll: 'Tout accepter',
+    save: 'Enregistrer et continuer',
+    showDetails: 'Afficher les détails',
+    hideDetails: 'Masquer les détails',
+    showDescription: 'Afficher la description',
+    alwaysOn: 'Toujours actif',
+    categories: {
+      necessary: { label: 'Nécessaires', description: 'Cookies essentiels requis pour le fonctionnement du site et l’enregistrement des préférences.' },
+      experience: { label: 'Expérience', description: 'Cookies améliorant l’expérience utilisateur, comme les préférences de langue et d’interface.' },
+      measurement: { label: 'Mesure', description: 'Cookies de mesure, comme Google Analytics 4, pour des analyses agrégées et l’amélioration du site.' },
+      marketing: { label: 'Marketing', description: 'Cookies pour contenus personnalisés et campagnes marketing. Ils ne sont pas actifs actuellement sur ce site.' },
+    },
+  },
   legal: {
     lastUpdatedLabel: 'Dernière mise à jour',
     privacy: {

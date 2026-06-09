@@ -30,6 +30,26 @@ const it: Messages = {
     appStoreAlt: 'Scarica da App Store',
     googlePlayAlt: 'Disponibile su Google Play',
   },
+  cookieBanner: {
+    title: 'Le tue preferenze relative alla privacy',
+    intro: 'Questo pannello ti permette di esprimere preferenze relative al trattamento delle tue informazioni personali. Puoi rivedere e modificare le tue scelte in qualsiasi momento tramite l’apposito link. Per rifiutare il consenso alle attività descritte di seguito, disattiva i singoli comandi o usa il pulsante “Rifiuta tutto” e conferma il salvataggio.',
+    fullPolicy: 'Visualizza Cookie Policy completa',
+    trackingTitle: 'Le tue preferenze relative al consenso per le tecnologie di tracciamento',
+    trackingIntro: 'Le opzioni disponibili in questa sezione permettono di personalizzare il consenso per le tecnologie di tracciamento usate per le finalità descritte. Per ulteriori informazioni consulta la cookie policy. Il rifiuto del consenso per una finalità può rendere alcune funzioni non disponibili.',
+    rejectAll: 'Rifiuta tutto',
+    acceptAll: 'Accetta tutto',
+    save: 'Salva e continua',
+    showDetails: 'Mostra dettagli',
+    hideDetails: 'Nascondi dettagli',
+    showDescription: 'Mostra descrizione',
+    alwaysOn: 'Sempre attivi',
+    categories: {
+      necessary: { label: 'Necessari', description: 'Cookie tecnici necessari per il funzionamento del sito e per salvare le preferenze.' },
+      experience: { label: 'Esperienza', description: 'Cookie che migliorano l’esperienza utente, ad esempio preferenze di lingua e interfaccia.' },
+      measurement: { label: 'Misurazione', description: 'Cookie di misurazione, come Google Analytics 4, per analisi aggregate e miglioramento del sito.' },
+      marketing: { label: 'Marketing', description: 'Cookie per contenuti personalizzati e campagne marketing. Al momento non sono attivi su questo sito.' },
+    },
+  },
   legal: {
     lastUpdatedLabel: 'Ultimo aggiornamento',
     privacy: {

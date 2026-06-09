@@ -54,6 +54,26 @@ export type Messages = {
     appStoreAlt: string
     googlePlayAlt: string
   }
+  cookieBanner: {
+    title: string
+    intro: string
+    fullPolicy: string
+    trackingTitle: string
+    trackingIntro: string
+    rejectAll: string
+    acceptAll: string
+    save: string
+    showDetails: string
+    hideDetails: string
+    showDescription: string
+    alwaysOn: string
+    categories: {
+      necessary: { label: string; description: string }
+      experience: { label: string; description: string }
+      measurement: { label: string; description: string }
+      marketing: { label: string; description: string }
+    }
+  }
   legal: {
     lastUpdatedLabel: string
     privacy: LegalDocument

@@ -28,6 +28,38 @@ const en: Messages = {
     appStoreAlt: 'Download on the App Store',
     googlePlayAlt: 'Get it on Google Play',
   },
+  cookieBanner: {
+    title: 'Your privacy preferences',
+    intro: 'This panel allows you to express preferences related to the processing of your personal information. You can review and update your choices at any time using the dedicated link. To refuse consent for the processing activities described below, disable individual toggles or use the “Reject all” button and confirm to save your choices.',
+    fullPolicy: 'View full Cookie Policy',
+    trackingTitle: 'Your preferences for tracking technologies',
+    trackingIntro: 'The options in this section let you customize your consent for any tracking technology used for the purposes described below. For more information on how these tools work, refer to the cookie policy. Refusing consent for a specific purpose may make related features unavailable.',
+    rejectAll: 'Reject all',
+    acceptAll: 'Accept all',
+    save: 'Save and continue',
+    showDetails: 'Show details',
+    hideDetails: 'Hide details',
+    showDescription: 'Show description',
+    alwaysOn: 'Always on',
+    categories: {
+      necessary: {
+        label: 'Necessary',
+        description: 'Essential cookies required for the site to function and to store preferences.',
+      },
+      experience: {
+        label: 'Experience',
+        description: 'Cookies that improve the user experience, such as language and UI preferences.',
+      },
+      measurement: {
+        label: 'Measurement',
+        description: 'Measurement cookies, such as Google Analytics 4, for aggregated analytics and site improvements.',
+      },
+      marketing: {
+        label: 'Marketing',
+        description: 'Cookies for personalized content and marketing campaigns. They are not currently active on this site.',
+      },
+    },
+  },
   legal: {
     lastUpdatedLabel: 'Last updated',
     privacy: {

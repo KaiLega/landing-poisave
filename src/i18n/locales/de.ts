@@ -28,6 +28,26 @@ const de: Messages = {
     appStoreAlt: 'Im App Store laden',
     googlePlayAlt: 'Bei Google Play verfügbar',
   },
+  cookieBanner: {
+    title: 'Deine Datenschutzpräferenzen',
+    intro: 'In diesem Bereich kannst du Präferenzen zur Verarbeitung deiner personenbezogenen Daten festlegen. Du kannst deine Auswahl jederzeit über den entsprechenden Link prüfen und ändern. Um die unten beschriebenen Verarbeitungen abzulehnen, deaktiviere einzelne Optionen oder nutze “Alle ablehnen”.',
+    fullPolicy: 'Vollständige Cookie-Richtlinie anzeigen',
+    trackingTitle: 'Deine Präferenzen für Tracking-Technologien',
+    trackingIntro: 'Die Optionen in diesem Abschnitt ermöglichen es, deine Einwilligung für Tracking-Technologien anzupassen. Weitere Informationen findest du in der Cookie-Richtlinie. Die Ablehnung einer bestimmten Einwilligung kann dazu führen, dass zugehörige Funktionen nicht verfügbar sind.',
+    rejectAll: 'Alle ablehnen',
+    acceptAll: 'Alle akzeptieren',
+    save: 'Speichern und fortfahren',
+    showDetails: 'Details anzeigen',
+    hideDetails: 'Details ausblenden',
+    showDescription: 'Beschreibung anzeigen',
+    alwaysOn: 'Immer aktiv',
+    categories: {
+      necessary: { label: 'Notwendig', description: 'Essenzielle Cookies, die für den Betrieb der Website und das Speichern von Präferenzen erforderlich sind.' },
+      experience: { label: 'Erlebnis', description: 'Cookies, die das Nutzererlebnis verbessern, zum Beispiel Sprach- und UI-Präferenzen.' },
+      measurement: { label: 'Messung', description: 'Mess-Cookies, wie Google Analytics 4, für aggregierte Analysen und Website-Verbesserungen.' },
+      marketing: { label: 'Marketing', description: 'Cookies für personalisierte Inhalte und Marketingkampagnen. Sie sind derzeit auf dieser Website nicht aktiv.' },
+    },
+  },
   legal: {
     lastUpdatedLabel: 'Zuletzt aktualisiert',
     privacy: {
