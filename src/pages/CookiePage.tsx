@@ -1,13 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ROUTES } from '../routes'
+import { useI18n } from '../i18n/I18nProvider'
 
 export default function CookiePage() {
+  const { copy } = useI18n()
+
   return (
     <section className="bg-slate-50 min-h-[70vh] section">
       <div className="mx-auto px-4 max-w-4xl">
         <div className="text-center">
-          <h1 className="heading">Cookie Policy</h1>
+          <h1 className="heading">{copy.footer.cookies}</h1>
           <p className="mt-3 subtle">Last updated: 24 April 2026</p>
         </div>
 
@@ -67,7 +70,7 @@ export default function CookiePage() {
         </div>
 
         <div className="mt-10 text-center">
-          <Link to={ROUTES.home} className="btn btn-glass-brand">Back to home</Link>
+          <Link to={ROUTES.home} className="btn btn-glass-brand">{copy.common.backHome}</Link>
         </div>
       </div>
     </section>

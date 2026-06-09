@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useI18n } from '../i18n/I18nProvider'
 
 type Step = {
   index: string
@@ -10,6 +11,8 @@ type Step = {
 
 export default function HowItWorksSection({ steps }: { steps: Step[] }) {
   const [active, setActive] = useState(0)
+  const { copy } = useI18n()
+  const howItWorks = copy.home.howItWorks
   const activeStep = steps[active] ?? steps[0]
 
   return (
@@ -17,11 +20,9 @@ export default function HowItWorksSection({ steps }: { steps: Step[] }) {
       <div className="mx-auto px-4 max-w-6xl">
         <div className="how-it-works">
           <div className="how-it-works__content">
-            <span className="section-kicker">How it works</span>
-            <h2 className="heading">Paste a link, refine the details, and keep the place on your map.</h2>
-            <p className="section-lead">
-              Move from a social post to a saved place in three quick steps, without losing the useful details along the way.
-            </p>
+            <span className="section-kicker">{howItWorks.kicker}</span>
+            <h2 className="heading">{howItWorks.title}</h2>
+            <p className="section-lead">{howItWorks.lead}</p>
 
             <div className="how-it-works__steps">
               {steps.map((step, index) => {

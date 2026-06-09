@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useI18n } from '../i18n/I18nProvider'
 
 export default function BeforeAfterSection() {
   const [position, setPosition] = useState(50)
   const sectionRef = useRef<HTMLElement | null>(null)
   const hasAnimatedRef = useRef(false)
+  const { copy } = useI18n()
+  const beforeAfter = copy.home.beforeAfter
 
   const snapToNearest = () => {
     if (position < 25) {
@@ -61,23 +64,21 @@ export default function BeforeAfterSection() {
     <section ref={sectionRef} className="section">
       <div className="mx-auto px-4 max-w-6xl">
         <div className="section-copy section-copy--center">
-          <span className="section-kicker">Before / After</span>
-          <h2 className="heading">Turn saved places from social media into one organized map</h2>
-          <p className="section-lead">
-            Drag to see how PoiSave turns saved places from Instagram, TikTok and the web into organized map pins you can easily find later.
-          </p>
+          <span className="section-kicker">{beforeAfter.kicker}</span>
+          <h2 className="heading">{beforeAfter.title}</h2>
+          <p className="section-lead">{beforeAfter.lead}</p>
         </div>
 
         <div className="mt-12 before-after">
           <div className="before-after__layer before-after__layer--before">
-            <img src="/img/before-after/before.png" alt="Scattered saved places from Instagram and TikTok before using PoiSave" />
+            <img src="/img/before-after/before.png" alt={beforeAfter.beforeAlt} />
           </div>
 
           <div
             className="before-after__layer before-after__layer--after"
             style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
           >
-            <img src="/img/before-after/after.png" alt="Organized map with saved places using PoiSave app" />
+            <img src="/img/before-after/after.png" alt={beforeAfter.afterAlt} />
           </div>
 
           <div className="before-after__handle" style={{ left: `${position}%` }}>
@@ -93,12 +94,12 @@ export default function BeforeAfterSection() {
             onChange={(event) => setPosition(Number(event.target.value))}
             onMouseUp={snapToNearest}
             onTouchEnd={snapToNearest}
-            aria-label="Compare before and after PoiSave"
+            aria-label={beforeAfter.rangeLabel}
           />
         </div>
 
         <p className="before-after__closing">
-          Never lose a place you saved on social media again.
+          {beforeAfter.closing}
         </p>
       </div>
     </section>

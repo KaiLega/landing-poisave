@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SectionLink from './SectionLink'
 import { ROUTES } from '../routes'
+import LanguageSelector from './LanguageSelector'
+import { useI18n } from '../i18n/I18nProvider'
 
 type HeaderProps = {
   forceSticky?: boolean
@@ -9,6 +11,7 @@ type HeaderProps = {
 
 export default function Header({ forceSticky = false }: HeaderProps){
   const [isScrolled, setIsScrolled] = useState(false)
+  const { copy } = useI18n()
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 24)
@@ -18,11 +21,11 @@ export default function Header({ forceSticky = false }: HeaderProps){
   }, [])
 
   const items = [
-    {sectionId: 'how-it-works', label:'How it works'},
-    {sectionId: 'app-preview', label:'App Preview'},
-    {sectionId: 'features', label:'Features'},
-    {sectionId: 'download', label:'Download'},
-    {sectionId: 'faq', label:'FAQ'}
+    {sectionId: 'how-it-works', label: copy.nav.howItWorks},
+    {sectionId: 'app-preview', label: copy.nav.appPreview},
+    {sectionId: 'features', label: copy.nav.features},
+    {sectionId: 'download', label: copy.nav.download},
+    {sectionId: 'faq', label: copy.nav.faq}
   ]
   const showSticky = forceSticky || isScrolled
   return (
@@ -45,8 +48,9 @@ export default function Header({ forceSticky = false }: HeaderProps){
               {it.label}
             </SectionLink>
           ))}
+          <LanguageSelector isLight={!showSticky} />
         </nav>
-        <SectionLink sectionId="download" className={`btn header-cta ${showSticky ? 'btn-primary' : 'btn-glass text-white'}`}>Get the app</SectionLink>
+        <SectionLink sectionId="download" className={`btn header-cta ${showSticky ? 'btn-primary' : 'btn-glass text-white'}`}>{copy.nav.getApp}</SectionLink>
       </div>
     </header>
   )

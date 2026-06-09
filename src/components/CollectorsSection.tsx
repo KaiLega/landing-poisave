@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { ArrowRight, Check } from 'lucide-react'
 import SectionLink from './SectionLink'
+import { useI18n } from '../i18n/I18nProvider'
 
 export default function CollectorsSection() {
-  const typingText = `Restaurant name
-Example street 3, Rome
-Cost: 20€
-Restaurant with a view of the Colosseum, great for date nights or solo dinners. The carbonara is a must-try!`
+  const { copy } = useI18n()
+  const collectors = copy.home.collectors
+  const typingText = collectors.typingText
   const [visibleChars, setVisibleChars] = useState(0)
 
   useEffect(() => {
@@ -31,36 +31,28 @@ Restaurant with a view of the Colosseum, great for date nights or solo dinners. 
     <section className="section">
       <div className="items-center gap-10 grid lg:grid-cols-2 mx-auto px-4 max-w-6xl">
         <div className="collectors-demo split-showcase split-showcase--dark">
-          <img src="/img/intro2b.png" alt="Poisave saved place details on mobile" />
+          <img src="/img/intro2b.png" alt={collectors.imageAlt} />
           <div className="collectors-demo__typing" aria-hidden="true">
             <span className="collectors-demo__typing-text">{typingText.slice(0, visibleChars)}</span>
           </div>
         </div>
 
         <div>
-          <span className="section-kicker">Built for collectors</span>
-          <h2 className="heading">From saved posts to real plans, without losing them in chats, bookmarks or screenshots</h2>
-          <p className="section-lead">
-            Instead of leaving recommendations buried in chat threads, bookmarks or screenshots, you can collect them in one place and return when you need them.
-          </p>
+          <span className="section-kicker">{collectors.kicker}</span>
+          <h2 className="heading">{collectors.title}</h2>
+          <p className="section-lead">{collectors.lead}</p>
 
           <ul className="checklist">
-            <li>
-              <Check className="w-4 h-4" />
-              Keep one source of truth for restaurants, cafes and travel spots.
-            </li>
-            <li>
-              <Check className="w-4 h-4" />
-              Review details before saving so the map stays clean.
-            </li>
-            <li>
-              <Check className="w-4 h-4" />
-              Open your saved places visually instead of hunting through links.
-            </li>
+            {collectors.bullets.map((bullet) => (
+              <li key={bullet}>
+                <Check className="w-4 h-4" />
+                {bullet}
+              </li>
+            ))}
           </ul>
 
           <SectionLink sectionId="download" className="inline-flex mt-8 btn btn-primary">
-            Explore plans
+            {collectors.button}
             <ArrowRight className="ml-2 w-4 h-4" />
           </SectionLink>
         </div>

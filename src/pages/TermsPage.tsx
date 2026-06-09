@@ -1,13 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ROUTES } from '../routes'
+import { useI18n } from '../i18n/I18nProvider'
 
 export default function TermsPage() {
+  const { copy } = useI18n()
+
   return (
     <section className="bg-slate-50 min-h-[70vh] section">
       <div className="mx-auto px-4 max-w-4xl">
         <div className="text-center">
-          <h1 className="heading">Terms of Use</h1>
+          <h1 className="heading">{copy.footer.terms}</h1>
           <p className="mt-3 subtle">Last updated: 24 April 2026</p>
         </div>
 
@@ -50,10 +53,19 @@ export default function TermsPage() {
 
           <p><strong>7. Subscriptions and Payments</strong></p>
           <p>
-            Premium subscriptions, if available, are billed through the Apple App Store or Google Play. Renewals, billing, and cancellations are handled through the relevant app store account.
+            Premium subscriptions, if available, are billed through the Apple App Store or Google Play. Renewals, billing, cancellations, and refunds are handled through the relevant app store account.
+          </p>
+          <p>
+            Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current billing period.
           </p>
           <p>
             Subscriptions are subject to the terms and conditions of the Apple App Store or Google Play, depending on where the purchase is made.
+          </p>
+          <p>
+            For purchases made through the Apple App Store, Apple&apos;s Standard End User License Agreement (EULA) also applies:{' '}
+            <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">
+              https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+            </a>
           </p>
           <p>
             Prices, billing periods, and available plans may vary by country, platform, and store.
@@ -108,7 +120,7 @@ export default function TermsPage() {
         </div>
 
         <div className="mt-10 text-center">
-          <Link to={ROUTES.home} className="btn btn-glass-brand">Back to home</Link>
+          <Link to={ROUTES.home} className="btn btn-glass-brand">{copy.common.backHome}</Link>
         </div>
       </div>
     </section>

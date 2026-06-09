@@ -1,5 +1,6 @@
 import React from 'react'
 import { Check } from 'lucide-react'
+import { useI18n } from '../i18n/I18nProvider'
 
 type PricingPlan = {
   name: string
@@ -19,15 +20,16 @@ type PricingSectionProps = {
 }
 
 export default function PricingSection({ plans }: PricingSectionProps) {
+  const { copy } = useI18n()
+  const pricing = copy.home.pricing
+
   return (
     <section id="download" className="bg-lightgrey section">
       <div className="mx-auto px-4 max-w-6xl">
         <div className="section-copy section-copy--center">
-          <span className="section-kicker">Pricing</span>
-          <h2 className="heading">Start free, upgrade to PoiSave Premium</h2>
-          <p className="section-lead">
-            Save places for free, then unlock unlimited saved places, cloud sync, no ads and advanced map customization. — Premium is where it gets powerful.
-          </p>
+          <span className="section-kicker">{pricing.kicker}</span>
+          <h2 className="heading">{pricing.title}</h2>
+          <p className="section-lead">{pricing.lead}</p>
         </div>
 
         <div className="gap-6 grid lg:grid-cols-2 mt-12">
@@ -52,7 +54,7 @@ export default function PricingSection({ plans }: PricingSectionProps) {
                 <div className="plan-card__price">
                   {(plan.originalPrice || plan.priceNote || plan.yearlyPrice) && (
                     <div className="plan-card__price-row">
-                      <span className="plan-card__price-term">Monthly</span>
+                      <span className="plan-card__price-term">{pricing.monthly}</span>
                       {plan.originalPrice && <span className="plan-card__price-original">{plan.originalPrice}</span>}
                     </div>
                   )}
@@ -61,7 +63,7 @@ export default function PricingSection({ plans }: PricingSectionProps) {
 
                   {plan.yearlyPrice && (
                     <div className="plan-card__price-yearly">
-                      <span className="plan-card__price-term">Annual</span>
+                      <span className="plan-card__price-term">{pricing.annual}</span>
                       <strong>{plan.yearlyPrice}</strong>
                       {plan.yearlyOriginalPrice && <del>{plan.yearlyOriginalPrice}</del>}
                     </div>
@@ -76,12 +78,12 @@ export default function PricingSection({ plans }: PricingSectionProps) {
           <img
             src="/img/apple/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
             className="store-row__badge"
-            alt="Download on the App Store"
+            alt={copy.common.appStoreAlt}
           />
           <img
             src="/img/android/GetItOnGooglePlay_Badge_Web_color_English.svg"
             className="store-row__badge"
-            alt="Get it on Google Play"
+            alt={copy.common.googlePlayAlt}
           />
         </div>
       </div>

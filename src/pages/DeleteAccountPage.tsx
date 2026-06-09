@@ -1,13 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ROUTES } from '../routes'
+import { useI18n } from '../i18n/I18nProvider'
 
 export default function DeleteAccountPage() {
+  const { copy } = useI18n()
+
   return (
     <section className="section bg-slate-50 min-h-[70vh]">
       <div className="mx-auto max-w-4xl px-4">
         <div className="text-center">
-          <h1 className="heading">Delete Account</h1>
+          <h1 className="heading">{copy.footer.deleteAccount}</h1>
           <p className="mt-3 subtle">How to permanently delete your PoiSave account and associated data.</p>
         </div>
 
@@ -40,7 +43,7 @@ export default function DeleteAccountPage() {
         </div>
 
         <div className="mt-10 text-center">
-          <Link to={ROUTES.home} className="btn btn-glass-brand">Back to home</Link>
+          <Link to={ROUTES.home} className="btn btn-glass-brand">{copy.common.backHome}</Link>
         </div>
       </div>
     </section>

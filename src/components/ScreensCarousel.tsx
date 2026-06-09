@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useI18n } from '../i18n/I18nProvider'
 
 type Slide = {
   src: string
@@ -17,6 +18,8 @@ export default function ScreensCarousel({ slides }: { slides: Slide[] }) {
   const [active, setActive] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [touchStartX, setTouchStartX] = useState<number | null>(null)
+  const { copy } = useI18n()
+  const carousel = copy.home.carousel
   const activeSlide = slides[active]
 
   const goToPrevious = () => setActive((current) => wrapIndex(current - 1, slides.length))
@@ -59,7 +62,7 @@ export default function ScreensCarousel({ slides }: { slides: Slide[] }) {
       onTouchCancel={() => setTouchStartX(null)}
     >
       <div className="carousel-copy--top carousel-copy">
-        <h2 className="heading">See PoiSave in action</h2>
+        <h2 className="heading">{carousel.heading}</h2>
         <br />
         <span className="carousel-copy__eyebrow">{activeSlide.eyebrow}</span>
         <h3 className="carousel-copy__title">{activeSlide.title}</h3>
@@ -75,7 +78,7 @@ export default function ScreensCarousel({ slides }: { slides: Slide[] }) {
               className="carousel-slide"
               data-offset={offset}
               onClick={() => setActive(wrapIndex(active + offset, slides.length))}
-              aria-label={`Show ${slide.title}`}
+              aria-label={`${carousel.showLabel} ${slide.title}`}
               aria-current={offset === 0 ? 'true' : undefined}
             >
               <img src={slide.src} alt={slide.alt} />
@@ -93,19 +96,19 @@ export default function ScreensCarousel({ slides }: { slides: Slide[] }) {
           type="button"
           className="carousel-button--left carousel-button"
           onClick={goToPrevious}
-          aria-label="Previous app preview"
+          aria-label={carousel.previousLabel}
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
 
-        <div className="carousel-dots" aria-label="App preview navigation">
+        <div className="carousel-dots" aria-label={carousel.navigationLabel}>
           {slides.map((slide, index) => (
             <button
               key={slide.src}
               type="button"
               className={`carousel-dot${index === active ? ' is-active' : ''}`}
               onClick={() => setActive(index)}
-              aria-label={`Go App preview ${index + 1}`}
+              aria-label={`${carousel.goToLabel} ${index + 1}`}
             />
           ))}
         </div>
@@ -114,7 +117,7 @@ export default function ScreensCarousel({ slides }: { slides: Slide[] }) {
           type="button"
           className="carousel-button--right carousel-button"
           onClick={goToNext}
-          aria-label="Next app preview"
+          aria-label={carousel.nextLabel}
         >
           <ChevronRight className="w-5 h-5" />
         </button>
