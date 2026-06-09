@@ -7,9 +7,10 @@ type SectionLinkProps = {
   sectionId: string
   className?: string
   children: ReactNode
+  onClick?: () => void
 }
 
-export default function SectionLink({ sectionId, className, children }: SectionLinkProps) {
+export default function SectionLink({ sectionId, className, children, onClick }: SectionLinkProps) {
   const navigate = useNavigate()
   const location = useLocation()
   const to = toSectionPath(sectionId)
@@ -19,6 +20,8 @@ export default function SectionLink({ sectionId, className, children }: SectionL
       to={to}
       className={className}
       onClick={(event) => {
+        onClick?.()
+
         if (location.pathname !== ROUTES.home) return
 
         event.preventDefault()
