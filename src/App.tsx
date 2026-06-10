@@ -1,5 +1,6 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import Analytics from './components/Analytics'
 import ComingSoon from './components/ComingSoon'
 import { COMING_SOON } from './config'
 import MarketingLayout from './layouts/MarketingLayout'
@@ -17,19 +18,22 @@ export default function App() {
   }
 
   return (
-    <Routes>
-      <Route element={<MarketingLayout />}>
-        <Route path={ROUTES.home} element={<HomePage />} />
-      </Route>
+    <>
+      <Analytics />
+      <Routes>
+        <Route element={<MarketingLayout />}>
+          <Route path={ROUTES.home} element={<HomePage />} />
+        </Route>
 
-      <Route element={<LegalLayout />}>
-        <Route path={ROUTES.privacy} element={<PrivacyPage />} />
-        <Route path={ROUTES.cookies} element={<CookiePage />} />
-        <Route path={ROUTES.terms} element={<TermsPage />} />
-        <Route path={ROUTES.deleteAccount} element={<DeleteAccountPage />} />
-      </Route>
+        <Route element={<LegalLayout />}>
+          <Route path={ROUTES.privacy} element={<PrivacyPage />} />
+          <Route path={ROUTES.cookies} element={<CookiePage />} />
+          <Route path={ROUTES.terms} element={<TermsPage />} />
+          <Route path={ROUTES.deleteAccount} element={<DeleteAccountPage />} />
+        </Route>
 
-      <Route path="*" element={<Navigate to={ROUTES.home} replace />} />
-    </Routes>
+        <Route path="*" element={<Navigate to={ROUTES.home} replace />} />
+      </Routes>
+    </>
   )
 }

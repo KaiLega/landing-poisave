@@ -3,8 +3,7 @@ import { Cookie as LinkIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ROUTES } from '../routes'
 import { useI18n } from '../i18n/I18nProvider'
-
-const STORAGE_KEY = 'poisave_cookie_consent'
+import { COOKIE_CONSENT_STORAGE_KEY, notifyCookieConsentChange } from '../analytics'
 
 export default function CookieBanner(){
   const { copy } = useI18n()
@@ -26,7 +25,7 @@ export default function CookieBanner(){
   })
 
   useEffect(() => {
-    const existing = localStorage.getItem(STORAGE_KEY)
+    const existing = localStorage.getItem(COOKIE_CONSENT_STORAGE_KEY)
     if (!existing) {
       setVisible(true)
     }
@@ -34,15 +33,17 @@ export default function CookieBanner(){
   }, [])
 
   const handleChoice = (value: 'accepted' | 'declined') => {
-    localStorage.setItem(STORAGE_KEY, value)
+    localStorage.setItem(COOKIE_CONSENT_STORAGE_KEY, value)
     setConsent(value)
     setVisible(false)
+    notifyCookieConsentChange()
   }
 
   const handleSave = () => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs))
+    localStorage.setItem(COOKIE_CONSENT_STORAGE_KEY, JSON.stringify(prefs))
     setConsent('custom')
     setVisible(false)
+    notifyCookieConsentChange()
   }
 
   const applyAll = (value: boolean) => {
@@ -52,9 +53,10 @@ export default function CookieBanner(){
       measurement: value,
       marketing: value
     })
-    localStorage.setItem(STORAGE_KEY, value ? 'accepted' : 'declined')
+    localStorage.setItem(COOKIE_CONSENT_STORAGE_KEY, value ? 'accepted' : 'declined')
     setConsent(value ? 'accepted' : 'declined')
     setVisible(false)
+    notifyCookieConsentChange()
   }
 
   if (!visible) {
