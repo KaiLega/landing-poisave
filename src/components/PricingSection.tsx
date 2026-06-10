@@ -1,6 +1,7 @@
 import React from 'react'
 import { Check } from 'lucide-react'
 import { useI18n } from '../i18n/I18nProvider'
+import { storeBadges } from '../storeBadges'
 
 type PricingPlan = {
   name: string
@@ -20,8 +21,13 @@ type PricingSectionProps = {
 }
 
 export default function PricingSection({ plans }: PricingSectionProps) {
-  const { copy } = useI18n()
+  const { copy, language } = useI18n()
   const pricing = copy.home.pricing
+  const badges = storeBadges[language]
+
+  const showComingSoon = () => {
+    window.alert('Coming soon')
+  }
 
   return (
     <section id="download" className="bg-lightgrey section">
@@ -75,16 +81,20 @@ export default function PricingSection({ plans }: PricingSectionProps) {
         </div>
 
         <div className="store-row">
-          <img
-            src="/img/apple/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
-            className="store-row__badge"
-            alt={copy.common.appStoreAlt}
-          />
-          <img
-            src="/img/android/GetItOnGooglePlay_Badge_Web_color_English.svg"
-            className="store-row__badge"
-            alt={copy.common.googlePlayAlt}
-          />
+          <button type="button" className="store-row__button" onClick={showComingSoon}>
+            <img
+              src={badges.appStore}
+              className="store-row__badge"
+              alt={copy.common.appStoreAlt}
+            />
+          </button>
+          <button type="button" className="store-row__button" onClick={showComingSoon}>
+            <img
+              src={badges.googlePlay}
+              className="store-row__badge"
+              alt={copy.common.googlePlayAlt}
+            />
+          </button>
         </div>
       </div>
     </section>

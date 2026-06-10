@@ -1427,6 +1427,22 @@ body {
   width: auto;
 }
 
+.store-row__button {
+  display: inline-flex;
+  border-radius: 14px;
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.store-row__button:hover {
+  filter: brightness(1.04);
+  transform: translateY(-1px);
+}
+
+.store-row__button:focus-visible {
+  outline: 3px solid rgba(106, 53, 255, 0.3);
+  outline-offset: 4px;
+}
+
 /* Banner CTA */
 .coming-anim {
   background-size: 300% 300%;
@@ -1747,6 +1763,7 @@ body {
 
   .hero-stores-badge .store,
   .goal-band__stores .store,
+  .store-row__button,
   .store-row__badge {
     width: min(46%, 170px);
     max-width: 170px;
@@ -1761,6 +1778,10 @@ body {
   .goal-band__stores .store img,
   .store-row__badge {
     height: auto;
+  }
+
+  .store-row__button .store-row__badge {
+    width: 100%;
   }
 
   .hero-stores-badge .store img,

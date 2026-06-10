@@ -2,14 +2,16 @@ import React from 'react'
 import { Check, MapPin } from 'lucide-react'
 import SectionLink from './SectionLink'
 import { useI18n } from '../i18n/I18nProvider'
+import { storeBadges } from '../storeBadges'
 
 type HeroSectionProps = {
   benefits: string[]
 }
 
 export default function HeroSection({ benefits }: HeroSectionProps) {
-  const { copy } = useI18n()
+  const { copy, language } = useI18n()
   const hero = copy.home.hero
+  const badges = storeBadges[language]
 
   return (
     <section className="hero-seven">
@@ -46,7 +48,7 @@ export default function HeroSection({ benefits }: HeroSectionProps) {
             <SectionLink sectionId="download" className="store">
               <img
                 className="appstore-original"
-                src="/img/apple/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
+                src={badges.appStore}
                 alt={copy.common.appStoreAlt}
               />
             </SectionLink>
@@ -54,7 +56,7 @@ export default function HeroSection({ benefits }: HeroSectionProps) {
             <SectionLink sectionId="download" className="store">
               <img
                 className="googleplay-original"
-                src="/img/android/GetItOnGooglePlay_Badge_Web_color_English.svg"
+                src={badges.googlePlay}
                 alt={copy.common.googlePlayAlt}
               />
             </SectionLink>
