@@ -15,6 +15,9 @@ const I18nContext = createContext<I18nContextValue | null>(null)
 function getInitialLanguage(): LanguageCode {
   if (typeof window === 'undefined') return defaultLanguage
 
+  const urlLanguage = new URLSearchParams(window.location.search).get('lang')
+  if (isLanguageCode(urlLanguage)) return urlLanguage
+
   const saved = window.localStorage.getItem(STORAGE_KEY)
   if (isLanguageCode(saved)) return saved
 
@@ -24,33 +27,35 @@ function getInitialLanguage(): LanguageCode {
   return defaultLanguage
 }
 
-function updateMetaDescription(description: string) {
-  let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]')
-
-  if (!meta) {
-    meta = document.createElement('meta')
-    meta.name = 'description'
-    document.head.appendChild(meta)
-  }
-
-  meta.content = description
-}
-
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<LanguageCode>(getInitialLanguage)
   const copy = messages[language]
 
+  const setLanguage = (nextLanguage: LanguageCode) => {
+    setLanguageState(nextLanguage)
+
+    if (typeof window === 'undefined') return
+
+    const url = new URL(window.location.href)
+
+    if (nextLanguage === defaultLanguage) {
+      url.searchParams.delete('lang')
+    } else {
+      url.searchParams.set('lang', nextLanguage)
+    }
+
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
+  }
+
   useEffect(() => {
     document.documentElement.lang = language
-    document.title = copy.seo.title
-    updateMetaDescription(copy.seo.description)
     window.localStorage.setItem(STORAGE_KEY, language)
-  }, [copy.seo.description, copy.seo.title, language])
+  }, [language])
 
   const value = useMemo<I18nContextValue>(
     () => ({
       language,
-      setLanguage: setLanguageState,
+      setLanguage,
       copy,
     }),
     [copy, language],

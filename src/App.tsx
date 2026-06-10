@@ -2,6 +2,7 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Analytics from './components/Analytics'
 import ComingSoon from './components/ComingSoon'
+import Seo from './components/Seo'
 import { COMING_SOON } from './config'
 import MarketingLayout from './layouts/MarketingLayout'
 import LegalLayout from './layouts/LegalLayout'
@@ -20,6 +21,7 @@ export default function App() {
   return (
     <>
       <Analytics />
+      <Seo />
       <Routes>
         <Route element={<MarketingLayout />}>
           <Route path={ROUTES.home} element={<HomePage />} />
