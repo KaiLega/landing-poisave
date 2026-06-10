@@ -11,10 +11,11 @@ declare global {
   interface Window {
     dataLayer?: unknown[]
     gtag?: (...args: unknown[]) => void
+    __poisaveGaInitialized?: boolean
   }
 }
 
-let hasLoadedGoogleAnalytics = false
+let hasLoadedGoogleAnalytics = typeof window !== 'undefined' && window.__poisaveGaInitialized === true
 
 function getStoredConsent() {
   if (typeof window === 'undefined') return null
@@ -51,19 +52,27 @@ export function loadGoogleAnalytics() {
   if (!GA_MEASUREMENT_ID || hasLoadedGoogleAnalytics) return
 
   hasLoadedGoogleAnalytics = true
+  window.__poisaveGaInitialized = true
   window.dataLayer = window.dataLayer ?? []
   window.gtag = (...args: unknown[]) => {
     window.dataLayer?.push(args)
   }
 
-  const script = document.createElement('script')
-  script.async = true
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
-  document.head.appendChild(script)
+  const existingScript = document.querySelector(`script[src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"]`)
+
+  if (!existingScript) {
+    const script = document.createElement('script')
+    script.async = true
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
+    document.head.appendChild(script)
+  }
 
   window.gtag('js', new Date())
   window.gtag('consent', 'default', {
-    analytics_storage: 'granted',
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
   })
   window.gtag('config', GA_MEASUREMENT_ID, {
     send_page_view: false,
