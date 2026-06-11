@@ -1,5 +1,5 @@
 import React, { useEffect, useId, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import SectionLink from './SectionLink'
 import { ROUTES } from '../routes'
@@ -15,6 +15,7 @@ export default function Header({ forceSticky = false }: HeaderProps){
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const mobileMenuId = useId()
   const { copy } = useI18n()
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 24)
@@ -45,11 +46,24 @@ export default function Header({ forceSticky = false }: HeaderProps){
   ]
   const showSticky = forceSticky || isScrolled || isMobileMenuOpen
   const mobileLinkClass = 'mobile-nav__link'
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setIsMobileMenuOpen(false)
+  }
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${showSticky ? 'nav-blur border-b border-white/20' : 'border-b border-transparent bg-transparent'}`}>
       <div className="flex justify-between items-center mx-auto px-4 max-w-6xl h-16">
-        <Link to={ROUTES.home} className="flex items-center gap-2 font-semibold header-brand">
+        <Link
+          to={ROUTES.home}
+          className="flex items-center gap-2 font-semibold header-brand"
+          onClick={(event) => {
+            if (location.pathname !== ROUTES.home) return
+
+            event.preventDefault()
+            scrollToTop()
+          }}
+        >
           <img
             src={showSticky ? "/img/logo.png" : "/img/poisave-logo-horizontal-light.png"}
             className="header-brand__img"
