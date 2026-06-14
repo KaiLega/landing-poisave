@@ -895,6 +895,31 @@ body {
   @apply mt-1 text-brand-600 shrink-0;
 }
 
+.story-map-flow {
+  background:
+    radial-gradient(circle at 14% 10%, rgba(106, 53, 255, 0.1), transparent 24%),
+    radial-gradient(circle at 88% 26%, rgba(255, 92, 147, 0.09), transparent 26%),
+    radial-gradient(circle at 22% 72%, rgba(6, 182, 212, 0.08), transparent 24%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 35%, #f3f4f6 72%, #ffffff 100%);
+}
+
+.story-map-flow .section {
+  background: transparent;
+  background-image: none;
+}
+
+.story-map-flow .screens-section {
+  background-image: none;
+}
+
+.story-map-flow .section + .section {
+  padding-top: 2rem;
+}
+
+.story-map-flow .section:not(:last-child) {
+  padding-bottom: 2rem;
+}
+
 /* Screens carousel */
 .screens-section {
   background-image:
@@ -1183,6 +1208,24 @@ body {
   margin: 0;
 }
 
+.feature-pricing-contact-flow {
+  background:
+    radial-gradient(circle at 16% 12%, rgba(139, 53, 255, 0.12), transparent 28%),
+    radial-gradient(circle at 86% 38%, rgba(255, 92, 147, 0.11), transparent 24%),
+    radial-gradient(circle at 12% 86%, rgba(6, 182, 212, 0.08), transparent 26%),
+    linear-gradient(180deg, #f8fafc 0%, #f0f0f0 48%, #ffffff 100%);
+}
+
+.feature-pricing-contact-flow .section,
+.pricing-section,
+.contact-section {
+  background: transparent;
+}
+
+.feature-pricing-contact-flow .section + .section {
+  padding-top: 2rem;
+}
+
 /* Pricing */
 .plan-card {
   @apply px-8 py-8 rounded-[32px];
@@ -1344,6 +1387,119 @@ body {
   transform: translateY(-4px) scale(1.015);
   box-shadow: 0 26px 46px -34px rgba(15, 23, 42, 0.22);
   border-color: rgba(106, 53, 255, 0.26);
+}
+
+/* Contact */
+.contact-section {
+}
+
+.contact-panel {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--glass-stroke);
+  border-radius: 36px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.38)),
+    rgba(255, 255, 255, 0.58);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(24px) saturate(180%);
+}
+
+.contact-copy .section-lead {
+  margin-inline: 0;
+  text-align: left;
+}
+
+.contact-mail {
+  display: inline-flex;
+  gap: 0.65rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-weight: 800;
+  color: #6a35ff;
+  cursor: pointer;
+}
+
+.contact-mail__address {
+  display: inline-flex;
+  gap: 0.15rem;
+  align-items: baseline;
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-form__trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.45rem;
+  font-weight: 800;
+  color: #10172a;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 0.95rem 1rem;
+  color: #10172a;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(106, 53, 255, 0.56);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 0 4px rgba(106, 53, 255, 0.12);
+}
+
+.contact-form .btn {
+  justify-self: start;
+}
+
+.contact-form__note,
+.contact-form__status {
+  margin: 0;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.contact-form__status {
+  color: #166534;
+  font-weight: 800;
+}
+
+.contact-form__status--error {
+  color: #b91c1c;
+}
+
+@media (min-width: 900px) {
+  .contact-panel {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  }
 }
 
 /* FAQ */

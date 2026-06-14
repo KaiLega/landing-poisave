@@ -42,6 +42,7 @@ export default function Header({ forceSticky = false }: HeaderProps){
     {sectionId: 'app-preview', label: copy.nav.appPreview},
     {sectionId: 'features', label: copy.nav.features},
     {sectionId: 'download', label: copy.nav.download},
+    {sectionId: 'contact', label: copy.nav.contact},
     {sectionId: 'faq', label: copy.nav.faq}
   ]
   const showSticky = forceSticky || isScrolled || isMobileMenuOpen

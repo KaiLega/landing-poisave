@@ -40,6 +40,7 @@ export type Messages = {
     features: string
     download: string
     faq: string
+    contact: string
     getApp: string
   }
   footer: {
@@ -179,6 +180,22 @@ export type Messages = {
         items: string[]
         featured: boolean
       }[]
+    }
+    contact: {
+      kicker: string
+      title: string
+      lead: string
+      nameLabel: string
+      namePlaceholder: string
+      emailLabel: string
+      emailPlaceholder: string
+      messageLabel: string
+      messagePlaceholder: string
+      submit: string
+      sending: string
+      success: string
+      error: string
+      fallback: string
     }
     faq: {
       kicker: string

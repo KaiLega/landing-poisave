@@ -12,6 +12,7 @@ import { toSectionPath } from '../routes'
 import BeforeAfter from '../components/BeforeAfter'
 import AppPreviewSection from '../components/AppPreviewSection'
 import FAQSection from '../components/FAQSection'
+import ContactSection from '../components/ContactSection'
 import { useI18n } from '../i18n/I18nProvider'
 
 const TRACK_SHOWCASE_VARIANT: 'bleed' | 'panel' = 'bleed'
@@ -47,17 +48,23 @@ export default function HomePage() {
         buttonLabel={home.bannerCta.buttonLabel}
       />
 
-      <BeforeAfter />
+      <div className="story-map-flow">
+        <BeforeAfter />
 
-      <CollectorsSection />
+        <CollectorsSection />
 
-      <AppPreviewSection slides={home.carousel.slides} />
+        <AppPreviewSection slides={home.carousel.slides} />
+      </div>
 
       <TrackShowcase variant={TRACK_SHOWCASE_VARIANT} />
 
-      <FeaturesOverviewSection />
+      <div className="feature-pricing-contact-flow">
+        <FeaturesOverviewSection />
 
-      <PricingSection plans={home.pricing.plans} />
+        <PricingSection plans={home.pricing.plans} />
+
+        <ContactSection />
+      </div>
 
       <FAQSection items={home.faq.items} />
     </>

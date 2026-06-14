@@ -30,7 +30,7 @@ export default function PricingSection({ plans }: PricingSectionProps) {
   }
 
   return (
-    <section id="download" className="bg-lightgrey section">
+    <section id="download" className="pricing-section section">
       <div className="mx-auto px-4 max-w-6xl">
         <div className="section-copy section-copy--center">
           <span className="section-kicker">{pricing.kicker}</span>

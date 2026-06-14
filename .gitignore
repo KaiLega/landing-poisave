@@ -14,6 +14,7 @@ pnpm-debug.log*
 # env
 .env
 .env.local
+/contact.php
 
 # editor/OS
 .DS_Store
