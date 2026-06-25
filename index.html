@@ -28,16 +28,20 @@
     <meta name="twitter:description" content="Save restaurants, cafes and travel spots from Instagram, TikTok and the web on one personal map." />
     <meta name="twitter:image" content="https://poisave.com/img/poisave-icon.png" />
     <script>
+      var poisaveGaDebug = new URLSearchParams(window.location.search).has('gtm_debug') || new URLSearchParams(window.location.search).get('ga_debug') === '1';
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('consent', 'default', {
-        analytics_storage: 'denied',
+        analytics_storage: poisaveGaDebug ? 'granted' : 'denied',
         ad_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied'
       });
       gtag('js', new Date());
-      gtag('config', 'G-RPWMWDJM7T', { send_page_view: false });
+      gtag('config', 'G-RPWMWDJM7T', {
+        send_page_view: poisaveGaDebug,
+        debug_mode: poisaveGaDebug
+      });
       window.__poisaveGaInitialized = true;
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RPWMWDJM7T"></script>

@@ -205,7 +205,14 @@ body {
   .mobile-menu-button {
     display: inline-flex;
     justify-self: end;
-    color: #5a00d1;
+  }
+
+  .mobile-menu-button--resting {
+    color: #fff;
+  }
+
+  .mobile-menu-button--sticky {
+    color: #334155d9;
   }
 }
 

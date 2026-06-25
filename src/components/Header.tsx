@@ -86,7 +86,7 @@ export default function Header({ forceSticky = false }: HeaderProps){
         <SectionLink sectionId="download" className={`btn header-cta ${showSticky ? 'btn-primary' : 'btn-glass text-white'}`}>{copy.nav.getApp}</SectionLink>
         <button
           type="button"
-          className={`mobile-menu-button ${showSticky ? 'text-slate-800' : 'text-white'}`}
+          className={`mobile-menu-button ${showSticky ? 'mobile-menu-button--sticky' : 'mobile-menu-button--resting'}`}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
           aria-controls={mobileMenuId}
