@@ -14,7 +14,7 @@ pnpm-debug.log*
 # env
 .env
 .env.local
-/contact.php
+/poisave-message.php
 
 # editor/OS
 .DS_Store

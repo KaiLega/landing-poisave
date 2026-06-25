@@ -132,6 +132,7 @@ body {
   position: absolute;
   inset: 100% 0 auto;
   padding: 0.75rem 1rem 1rem;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.08), transparent);
 }
 
 .mobile-nav__panel {
@@ -140,13 +141,13 @@ body {
   max-width: 72rem;
   margin: 0 auto;
   padding: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.46);
+  border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 28px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.36)),
-    linear-gradient(135deg, rgba(255, 59, 107, 0.12), rgba(106, 53, 255, 0.14));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78), 0 30px 70px -38px rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(24px) saturate(190%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.82)),
+    linear-gradient(135deg, rgba(255, 59, 107, 0.1), rgba(106, 53, 255, 0.12));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86), 0 34px 80px -34px rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(30px) saturate(175%);
 }
 
 .mobile-nav__link {
@@ -155,13 +156,14 @@ body {
   min-height: 2.85rem;
   border-radius: 18px;
   padding: 0 0.9rem;
-  color: #172033;
+  color: #0f172a;
   font-weight: 800;
+  background: rgba(255, 255, 255, 0.38);
 }
 
 .mobile-nav__link:hover {
   color: #4c2dd8;
-  background: rgba(255, 255, 255, 0.54);
+  background: rgba(255, 255, 255, 0.78);
 }
 
 .mobile-nav__footer {
@@ -173,21 +175,25 @@ body {
 @media (max-width: 767px) {
   header .max-w-6xl {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    gap: 0.8rem;
+    grid-template-columns: minmax(0, 1fr) max-content minmax(2.55rem, 1fr);
+    gap: clamp(0.35rem, 2vw, 0.8rem);
   }
 
   .header-brand {
-    width: 124px;
+    width: clamp(96px, 30vw, 124px);
     height: 42px;
-    flex-basis: 124px;
+    flex-basis: clamp(96px, 30vw, 124px);
     justify-self: start;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .header-cta {
     min-width: 0;
-    padding: 0.68rem 0.92rem;
-    font-size: 0.88rem;
+    padding: 0.64rem clamp(0.72rem, 2.6vw, 0.92rem);
+    font-size: clamp(0.78rem, 3.4vw, 0.88rem);
+    line-height: 1;
+    white-space: nowrap;
     justify-self: center;
   }
 
