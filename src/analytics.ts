@@ -22,7 +22,17 @@ function getStoredConsent() {
   return window.localStorage.getItem(COOKIE_CONSENT_STORAGE_KEY)
 }
 
+export function isAnalyticsDebugMode() {
+  if (typeof window === 'undefined') return false
+
+  const params = new URLSearchParams(window.location.search)
+
+  return params.get('ga_debug') === '1' || params.has('gtm_debug')
+}
+
 export function hasMeasurementConsent() {
+  if (isAnalyticsDebugMode()) return true
+
   const storedConsent = getStoredConsent()
 
   if (storedConsent === 'accepted') return true
@@ -92,5 +102,6 @@ export function trackPageView(path: string) {
     page_title: document.title,
     page_location: window.location.href,
     page_path: path,
+    debug_mode: isAnalyticsDebugMode(),
   })
 }
