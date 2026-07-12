@@ -1,8 +1,8 @@
 import React from 'react'
 import { Check, MapPin } from 'lucide-react'
-import SectionLink from './SectionLink'
 import { useI18n } from '../i18n/I18nProvider'
 import { storeBadges } from '../storeBadges'
+import SectionLink from './SectionLink'
 
 type HeroSectionProps = {
   benefits: string[]
@@ -45,13 +45,18 @@ export default function HeroSection({ benefits }: HeroSectionProps) {
           </ul>
 
           <div className="hero-stores-badge">
-            <SectionLink sectionId="download" className="store">
+            <a
+              href={badges.appStoreUrl}
+              className="store"
+              target="_blank"
+              rel="noreferrer"
+            >
               <img
                 className="appstore-original"
                 src={badges.appStore}
                 alt={copy.common.appStoreAlt}
               />
-            </SectionLink>
+            </a>
 
             <SectionLink sectionId="download" className="store">
               <img

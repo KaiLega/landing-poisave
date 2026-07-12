@@ -81,13 +81,18 @@ export default function PricingSection({ plans }: PricingSectionProps) {
         </div>
 
         <div className="store-row">
-          <button type="button" className="store-row__button" onClick={showComingSoon}>
+          <a
+            href={badges.appStoreUrl}
+            className="store-row__button"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img
               src={badges.appStore}
               className="store-row__badge"
               alt={copy.common.appStoreAlt}
             />
-          </button>
+          </a>
           <button type="button" className="store-row__button" onClick={showComingSoon}>
             <img
               src={badges.googlePlay}
