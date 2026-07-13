@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.yugaweb.poisave",
+      "sha256_cert_fingerprints": [
+        "3E:E6:62:15:03:EE:03:99:18:25:8E:7F:AD:DE:6B:F8:7F:1B:3D:89:C3:87:F9:52:37:46:56:E2:21:99:B6:0A"
+      ]
+    }
+  }
+]

@@ -1618,6 +1618,170 @@ body {
   outline-offset: 4px;
 }
 
+/* Shared POI fallback */
+.share-pin-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(106, 53, 255, 0.17), transparent 30rem),
+    radial-gradient(circle at 88% 82%, rgba(255, 59, 107, 0.13), transparent 28rem),
+    #f8f7fb;
+}
+
+.share-pin-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 5rem;
+  padding: 1rem;
+}
+
+.share-pin-header img {
+  display: block;
+  width: auto;
+  height: 2.2rem;
+}
+
+.share-pin-shell {
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 5rem);
+  padding: 1.5rem 1rem 4rem;
+}
+
+.share-pin-card {
+  width: min(100%, 42rem);
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: clamp(1.75rem, 5vw, 3rem);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 40px 100px -50px rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(24px) saturate(160%);
+}
+
+.share-pin-card__icon {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1.4rem;
+  border-radius: 1.4rem;
+  color: white;
+  background: var(--grad-diag);
+  box-shadow: 0 22px 45px -22px rgba(90, 0, 209, 0.8);
+  transform: rotate(-4deg);
+}
+
+.share-pin-card__icon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.share-pin-kicker {
+  color: #5a00d1;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.share-pin-card h1 {
+  margin: 0.7rem 0 0;
+  font-size: clamp(2rem, 7vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+
+.share-pin-category {
+  margin: 1rem 0 0;
+  color: #5a00d1;
+  font-weight: 800;
+}
+
+.share-pin-location {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin: 0.75rem auto 0;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.share-pin-location svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.22rem;
+  flex: 0 0 auto;
+}
+
+.share-pin-price {
+  margin: 0.75rem 0 0;
+  color: #0f172a;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.share-pin-actions {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.share-pin-actions .btn {
+  gap: 0.55rem;
+}
+
+.share-pin-actions svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.share-pin-download {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(100, 116, 139, 0.18);
+  color: #475569;
+  text-align: left;
+}
+
+.share-pin-download > svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.1rem;
+  color: #5a00d1;
+  flex: 0 0 auto;
+}
+
+.share-pin-download strong,
+.share-pin-download a {
+  display: block;
+}
+
+.share-pin-download a {
+  margin-top: 0.2rem;
+  color: #5a00d1;
+  font-weight: 800;
+}
+
+.share-pin-card--invalid p {
+  margin: 1rem auto 1.75rem;
+  max-width: 34rem;
+  color: #475569;
+  line-height: 1.7;
+}
+
+@media (min-width: 640px) {
+  .share-pin-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* Banner CTA */
 .coming-anim {
   background-size: 300% 300%;
