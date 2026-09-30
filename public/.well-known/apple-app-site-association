@@ -5,8 +5,6 @@
       {
         "appID": "6G7V4ZAD3U.com.yugaweb.poisave",
         "paths": [
-          "/share-pin/",
-          "/share-pin/*",
           "/p/",
           "/p/*"
         ]

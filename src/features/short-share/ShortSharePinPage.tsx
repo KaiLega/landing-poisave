@@ -1,18 +1,20 @@
 import { useState, type ReactNode } from 'react'
 import { ArrowUpRight, Download, LoaderCircle, MapPin, Navigation } from 'lucide-react'
-import { createMapUrl, createPinDeepLink, formatCategory, type SharedPin } from '../../sharePin'
 import {
+  createMapUrl,
+  createPinDeepLink,
+  formatCategory,
   loadShortSharedPin,
-  parseShortShareQuery,
+  parseShortSharePath,
   SharedPinResolverError,
-  type ShortShareLink,
+  type SharedPin,
 } from './shortSharePin'
 
 const APP_STORE_URL = 'https://apps.apple.com/it/app/poisave/id6758574842'
 const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.yugaweb.poisave'
 
 type ShortSharePinPageProps = {
-  search?: string
+  pathname?: string
   resolverUrl?: string
   now?: () => number
   fetchImpl?: typeof fetch
@@ -23,23 +25,23 @@ type ViewState =
   | { status: 'ready' }
   | { status: 'loading' }
   | { status: 'resolved'; pin: SharedPin }
-  | { status: 'error'; unavailable: boolean }
+  | { status: 'error' }
+  | { status: 'unavailable' }
 
 export default function ShortSharePinPage({
-  search = window.location.search,
+  pathname = window.location.pathname,
   resolverUrl = import.meta.env.VITE_SHARED_PIN_RESOLVER_URL ?? '',
   now = Date.now,
   fetchImpl = fetch,
   storage = window.localStorage,
 }: ShortSharePinPageProps) {
-  const parsed = parseShortShareQuery(search, now())
+  const parsed = parseShortSharePath(pathname)
 
   if (parsed.status === 'invalid') return <InvalidLink />
-  if (parsed.status === 'expired') return <ExpiredLink />
 
   return (
     <ValidLink
-      link={parsed.link}
+      id={parsed.link.id}
       resolverUrl={resolverUrl}
       now={now}
       fetchImpl={fetchImpl}
@@ -49,13 +51,13 @@ export default function ShortSharePinPage({
 }
 
 function ValidLink({
-  link,
+  id,
   resolverUrl,
   now,
   fetchImpl,
   storage,
 }: {
-  link: ShortShareLink
+  id: string
   resolverUrl: string
   now: () => number
   fetchImpl: typeof fetch
@@ -68,7 +70,7 @@ function ValidLink({
 
     try {
       const result = await loadShortSharedPin({
-        link,
+        id,
         resolverUrl,
         storage,
         fetchImpl,
@@ -77,13 +79,15 @@ function ValidLink({
       setView({ status: 'resolved', pin: result.pin })
     } catch (error) {
       setView({
-        status: 'error',
-        unavailable: error instanceof SharedPinResolverError && error.code === 'unavailable',
+        status: error instanceof SharedPinResolverError && error.code === 'unavailable'
+          ? 'unavailable'
+          : 'error',
       })
     }
   }
 
   if (view.status === 'resolved') return <ResolvedPin pin={view.pin} />
+  if (view.status === 'unavailable') return <ExpiredLink />
 
   return (
     <PageFrame labelledBy="short-share-title">
@@ -95,17 +99,10 @@ function ValidLink({
 
       {view.status === 'error' ? (
         <div className="share-pin-status" role="alert">
-          <p>
-            {view.unavailable
-              ? 'Questo link è scaduto o non è più disponibile.'
-              : 'Non è stato possibile recuperare il luogo. Controlla la connessione e riprova.'}
-          </p>
-          {!view.unavailable && (
-            <button type="button" className="btn btn-primary" onClick={handleResolve}>
-              Riprova
-            </button>
-          )}
-          {view.unavailable && <HomeLink />}
+          <p>Non è stato possibile recuperare il luogo. Controlla la connessione e riprova.</p>
+          <button type="button" className="btn btn-primary" onClick={handleResolve}>
+            Riprova
+          </button>
         </div>
       ) : (
         <>
@@ -182,8 +179,7 @@ function ExpiredLink() {
   return (
     <PageFrame labelledBy="expired-link-title" invalid>
       <span className="share-pin-kicker">Link scaduto</span>
-      <h1 id="expired-link-title">Questo link non è più disponibile</h1>
-      <p>I link ai luoghi condivisi restano attivi per 30 giorni. Chiedi a chi lo ha condiviso di crearne uno nuovo.</p>
+      <h1 id="expired-link-title">Questo link non è più disponibile.</h1>
       <HomeLink />
     </PageFrame>
   )

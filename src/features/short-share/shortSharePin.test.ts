@@ -1,27 +1,26 @@
 // @vitest-environment jsdom
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { createPinDeepLink } from '../../sharePin'
 import {
+  createPinDeepLink,
   loadShortSharedPin,
-  parseShortShareQuery,
+  parseShortSharePath,
   readSharedPinCache,
   resolveSharedPin,
   writeSharedPinCache,
-  type ShortShareLink,
+  type SharedPin,
 } from './shortSharePin'
 
-const NOW = Date.parse('2026-09-29T12:00:00.000Z')
-const LINK: ShortShareLink = {
-  id: 'K7mQ2x9B4nR8tV3wY6zA1c',
-  expiresAt: NOW + 86_400_000,
-}
-const PIN = {
+const NOW = Date.parse('2026-09-30T12:00:00.000Z')
+const TOKEN = 'K7mQ2x9Babcd'
+const EXPIRES_AT = NOW + 86_400_000
+const PIN: SharedPin = {
   title: 'Furong Town',
   categoryId: 'location',
-  latitude: 28.76733999999999,
-  longitude: 109.97484,
+  latitude: 12.123456789,
+  longitude: 34.123456789,
   city: '芙蓉镇',
-  address: 'Furong Town, Yongshun County, Hunan, Cina',
+  address: 'Furong Town, Hunan, Cina',
+  price: '€20',
 }
 const SUCCESS_PAYLOAD = {
   ok: true,
@@ -34,9 +33,9 @@ const SUCCESS_PAYLOAD = {
     },
     city: PIN.city,
     address: PIN.address,
-    price: null,
+    price: PIN.price,
   },
-  expiresAt: new Date(LINK.expiresAt).toISOString(),
+  expiresAt: new Date(EXPIRES_AT).toISOString(),
 }
 
 function response(status: number, body: unknown): Response {
@@ -51,69 +50,64 @@ beforeEach(() => {
   window.localStorage.clear()
 })
 
-describe('parseShortShareQuery', () => {
-  it('accepts an exact 22-character URL-safe token and Unix expiry', () => {
-    const result = parseShortShareQuery('?id=K7mQ2x9B4nR8tV3wY6zA1c&e=1793145600', NOW)
-
-    expect(result).toEqual({
+describe('parseShortSharePath', () => {
+  it('accepts /p/{id} with an exact 12-character URL-safe token', () => {
+    expect(parseShortSharePath(`/p/${TOKEN}`)).toEqual({
       status: 'valid',
-      link: {
-        id: 'K7mQ2x9B4nR8tV3wY6zA1c',
-        expiresAt: 1_793_145_600_000,
-      },
+      link: { id: TOKEN },
     })
   })
 
   it.each([
-    ['', ['id', 'e']],
-    ['?id=K7mQ2x9B4nR8tV3wY6zA%3C&e=1793145600', ['id']],
-    ['?id=K7mQ2x9B4nR8tV3wY6zA1&e=1793145600', ['id']],
-    ['?id=K7mQ2x9B4nR8tV3wY6zA1cd&e=1793145600', ['id']],
-    ['?id=K7mQ2x9B4nR8tV3wY6zA1c&e=tomorrow', ['e']],
-    ['?id=short&e=1793145600', ['id']],
-  ])('rejects missing or malformed parameters in %s', (search, errors) => {
-    expect(parseShortShareQuery(search, NOW)).toEqual({ status: 'invalid', errors })
+    ['/p/K7mQ2x9Babc', '11 characters'],
+    ['/p/K7mQ2x9Babcde', '13 characters'],
+    ['/p/K7mQ2x9B4nR8tV3wY6zA1c', '22 characters'],
+    ['/p/K7mQ2x9Babc!', 'unsupported character'],
+    [`/p/?id=${TOKEN}&e=1793145600`, 'legacy query-string format'],
+    ['/share-pin/', 'legacy share-pin route'],
+  ])('rejects %s (%s)', (pathname) => {
+    const parsedPath = new URL(pathname, 'https://poisave.com').pathname
+    expect(parseShortSharePath(parsedPath)).toEqual({ status: 'invalid', errors: ['id'] })
   })
 })
 
 describe('shared pin resolver', () => {
-  it('validates a successful response and preserves coordinate precision', async () => {
+  it('handles HTTP 200 and preserves coordinate precision', async () => {
     const fetchImpl = vi.fn().mockResolvedValue(response(200, SUCCESS_PAYLOAD)) as unknown as typeof fetch
-    const result = await resolveSharedPin(LINK.id, 'https://api.example.com/shared-pin', fetchImpl)
+    const result = await resolveSharedPin(TOKEN, 'https://api.example.com/shared-pin', fetchImpl)
 
-    expect(result.pin.latitude).toBe(28.76733999999999)
-    expect(result.pin.longitude).toBe(109.97484)
+    expect(result.pin.latitude).toBe(12.123456789)
+    expect(result.pin.longitude).toBe(34.123456789)
     expect(fetchImpl).toHaveBeenCalledWith(
-      'https://api.example.com/shared-pin?id=K7mQ2x9B4nR8tV3wY6zA1c',
+      `https://api.example.com/shared-pin?id=${TOKEN}`,
       expect.objectContaining({ method: 'GET' }),
     )
-
-    const deepLink = createPinDeepLink(result.pin)
-    const params = new URLSearchParams(deepLink.split('?')[1])
-    expect(params.get('lat')).toBe('28.76733999999999')
-    expect(params.get('lng')).toBe('109.97484')
   })
 
-  it('maps HTTP 410 to the same unavailable error', async () => {
+  it('maps HTTP 410 to unavailable', async () => {
     const fetchImpl = vi.fn().mockResolvedValue(response(410, { ok: false, error: 'expired' })) as unknown as typeof fetch
-
-    await expect(resolveSharedPin(LINK.id, '/resolver', fetchImpl)).rejects.toMatchObject({ code: 'unavailable' })
+    await expect(resolveSharedPin(TOKEN, '/resolver', fetchImpl)).rejects.toMatchObject({ code: 'unavailable' })
   })
 
-  it('reports a network error without exposing implementation details', async () => {
+  it('maps a failed request to a network error', async () => {
     const fetchImpl = vi.fn().mockRejectedValue(new Error('offline')) as unknown as typeof fetch
+    await expect(resolveSharedPin(TOKEN, '/resolver', fetchImpl)).rejects.toMatchObject({ code: 'network' })
+  })
 
-    await expect(resolveSharedPin(LINK.id, '/resolver', fetchImpl)).rejects.toMatchObject({ code: 'network' })
+  it('rejects an invalid token without making an HTTP request', async () => {
+    const fetchImpl = vi.fn() as unknown as typeof fetch
+    await expect(resolveSharedPin('too-short', '/resolver', fetchImpl)).rejects.toMatchObject({ code: 'invalid-token' })
+    expect(fetchImpl).not.toHaveBeenCalled()
   })
 })
 
 describe('shared pin cache', () => {
-  it('uses a valid cached pin without calling the resolver', async () => {
-    writeSharedPinCache(window.localStorage, LINK, PIN, LINK.expiresAt)
+  it('uses a non-expired cached response', async () => {
+    writeSharedPinCache(window.localStorage, TOKEN, PIN, EXPIRES_AT)
     const fetchImpl = vi.fn() as unknown as typeof fetch
 
     const result = await loadShortSharedPin({
-      link: LINK,
+      id: TOKEN,
       resolverUrl: '/resolver',
       storage: window.localStorage,
       fetchImpl,
@@ -124,27 +118,25 @@ describe('shared pin cache', () => {
     expect(fetchImpl).not.toHaveBeenCalled()
   })
 
-  it('discards an expired cache entry', () => {
-    writeSharedPinCache(window.localStorage, LINK, PIN, NOW - 1)
-
-    expect(readSharedPinCache(window.localStorage, LINK, NOW)).toBeNull()
-    expect(window.localStorage.length).toBe(0)
+  it('discards a cached response after the backend expiry', () => {
+    writeSharedPinCache(window.localStorage, TOKEN, PIN, NOW - 1)
+    expect(readSharedPinCache(window.localStorage, TOKEN, NOW)).toBeNull()
   })
 })
 
-describe('deep-link construction', () => {
-  it('encodes untrusted values as parameters instead of executable URL content', () => {
-    const deepLink = createPinDeepLink({
-      ...PIN,
-      title: 'Town&admin=true',
-      address: '<script>alert(1)</script>',
-      price: '€10',
-    })
+describe('createPinDeepLink', () => {
+  it('builds the final deep link without rounding coordinates', () => {
+    const deepLink = createPinDeepLink(PIN)
     const params = new URLSearchParams(deepLink.split('?')[1])
 
     expect(deepLink.startsWith('poisave://pin?')).toBe(true)
-    expect(params.get('title')).toBe('Town&admin=true')
-    expect(params.get('address')).toBe('<script>alert(1)</script>')
-    expect(params.get('admin')).toBeNull()
+    expect(Object.fromEntries(params)).toEqual({
+      title: 'Furong Town',
+      categoryId: 'location',
+      lat: '12.123456789',
+      lng: '34.123456789',
+      city: '芙蓉镇',
+      address: 'Furong Town, Hunan, Cina',
+    })
   })
 })

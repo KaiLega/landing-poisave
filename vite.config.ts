@@ -2,6 +2,33 @@ import { defineConfig, loadEnv, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'node:path'
 
+function sharedPinRewrite(): Plugin {
+  const rewriteSharedPin = (
+    request: { url?: string },
+    _response: unknown,
+    next: () => void,
+  ) => {
+    if (request.url) {
+      const url = new URL(request.url, 'http://localhost')
+      if (/^\/p\/[^/]+\/?$/.test(url.pathname)) {
+        request.url = `/p/index.html${url.search}`
+      }
+    }
+    next()
+  }
+
+  return {
+    name: 'shared-pin-rewrite',
+    enforce: 'pre',
+    configureServer(server) {
+      server.middlewares.use(rewriteSharedPin)
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use(rewriteSharedPin)
+    },
+  }
+}
+
 function associationFileHeaders(): Plugin {
   const setAssociationHeader = (
     request: { url?: string },
@@ -36,13 +63,13 @@ export default defineConfig(({ command, mode }) => {
   }
 
   return {
-    plugins: [react(), associationFileHeaders()],
+    plugins: [sharedPinRewrite(), react(), associationFileHeaders()],
     build: {
       rollupOptions: {
         input: {
           main: resolve(__dirname, 'index.html'),
-          sharePin: resolve(__dirname, 'share-pin/index.html'),
           shortSharePin: resolve(__dirname, 'p/index.html'),
+          notFound: resolve(__dirname, '404.html'),
         },
       },
     },

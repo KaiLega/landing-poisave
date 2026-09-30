@@ -1,25 +1,29 @@
-# Short shared-POI resolver
+# Shared POI links
 
-The static fallback at `/p/?id=TOKEN&e=UNIX_SECONDS` accepts a 22-character URL-safe token and does not request POI data until the visitor selects **Apri in PoiSave**.
+PoiSave exposes one public sharing format:
 
-Each link lasts 30 days and contains an immutable snapshot: later edits or deletion of the original POI do not alter the shared content. Once the expiry is reached, the page shows **Link scaduto** without calling the resolver.
+```text
+https://poisave.com/p/{id}
+```
+
+`id` is an immutable, URL-safe 12-character token matching `^[A-Za-z0-9_-]{12}$`. It is only a lookup key and contains no POI data. Shared snapshots last 30 days, but expiry is not present in the URL: the Firebase resolver is the only authoritative source.
+
+The page does not request POI data during initial loading. It calls the resolver only after the visitor selects **Apri in PoiSave**.
 
 ## Configuration
 
-Set the resolver URL at build time:
+Production builds require:
 
 ```bash
 VITE_SHARED_PIN_RESOLVER_URL=https://us-central1-poisave-yugaweb.cloudfunctions.net/resolveSharedPin npm run build
 ```
 
-For GitHub Pages, define `VITE_SHARED_PIN_RESOLVER_URL` as a GitHub Actions repository variable. This URL is public configuration, not a secret. The endpoint must allow CORS requests from `https://poisave.com`.
-Production builds intentionally fail when the variable is missing. No fallback resolver URL is embedded in the frontend.
+For GitHub Actions, define `VITE_SHARED_PIN_RESOLVER_URL` as a repository variable. This URL is public configuration, not a secret.
 
-
-## API contract
+## Resolver contract
 
 ```http
-GET {VITE_SHARED_PIN_RESOLVER_URL}?id=K7mQ2x9B4nR8tV3wY6zA1c
+GET {VITE_SHARED_PIN_RESOLVER_URL}?id=K7mQ2x9Babcd
 Accept: application/json
 ```
 
@@ -32,23 +36,37 @@ Successful response:
     "title": "Furong Town",
     "categoryId": "location",
     "coord": {
-      "latitude": 28.76733999999999,
-      "longitude": 109.97484
+      "latitude": 12.123456789,
+      "longitude": 34.123456789
     },
     "city": "芙蓉镇",
-    "address": "Furong Town, Yongshun County, Hunan, Cina",
+    "address": "Furong Town, Hunan, Cina",
     "price": null
   },
   "expiresAt": "2026-10-28T12:00:00.000Z"
 }
 ```
 
-For an expired, missing, malformed, or unavailable code, return HTTP `410` with the same public response for every case:
+An expired, missing, or invalid token returns:
+
+```http
+HTTP/1.1 410 Gone
+```
 
 ```json
 { "ok": false, "error": "expired" }
 ```
 
-Do not expose Firestore or Firebase credentials from this endpoint. The frontend validates the response and caches it locally only until the earliest expiry declared by the URL or resolver.
+Coordinates are passed to `poisave://pin` without formatting or rounding. Do not expose Firestore or Firebase credentials in the frontend.
 
-Coordinates are passed to the PoiSave deep link without formatting or rounding.
+## Static hosting
+
+A host with rewrite support must serve `/p/index.html` for `/p/*` while preserving the original URL and returning HTTP 200:
+
+```text
+/p/*  ->  /p/index.html  200
+```
+
+GitHub Pages does not support dynamic rewrites. This repository therefore builds a root `404.html` fallback that renders the correct page after a direct visit or refresh, but the initial document still has HTTP status 404. A true HTTP 200 for arbitrary `/p/{id}` paths requires moving the frontend behind Firebase Hosting, Cloudflare Pages, Netlify, or another rewrite-capable host.
+
+`firebase.json` and `.firebaserc` contain a ready-to-use Firebase Hosting configuration for project `poisave-yugaweb`. They do not deploy anything automatically; the custom domain must be moved from GitHub Pages before this rewrite becomes active.
