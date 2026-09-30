@@ -1,4 +1,4 @@
-import { defineConfig, type Plugin } from 'vite'
+import { defineConfig, loadEnv, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'node:path'
 
@@ -25,14 +25,26 @@ function associationFileHeaders(): Plugin {
   }
 }
 
-export default defineConfig({
-  plugins: [react(), associationFileHeaders()],
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        sharePin: resolve(__dirname, 'share-pin/index.html'),
+export default defineConfig(({ command, mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+  const resolverUrl = env.VITE_SHARED_PIN_RESOLVER_URL?.trim()
+
+  if (command === 'build' && mode === 'production' && !resolverUrl) {
+    throw new Error(
+      'Missing VITE_SHARED_PIN_RESOLVER_URL: configure the shared-pin resolver before a production build.',
+    )
+  }
+
+  return {
+    plugins: [react(), associationFileHeaders()],
+    build: {
+      rollupOptions: {
+        input: {
+          main: resolve(__dirname, 'index.html'),
+          sharePin: resolve(__dirname, 'share-pin/index.html'),
+          shortSharePin: resolve(__dirname, 'p/index.html'),
+        },
       },
     },
-  },
+  }
 })
