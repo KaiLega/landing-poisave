@@ -1,12 +1,10 @@
 import type { Messages } from '../types'
 import en from './en'
+import seo from '../seo.json'
 
 const fr: Messages = {
   ...en,
-  seo: {
-    title: 'PoiSave - Enregistrez les lieux des réseaux sociaux sur votre carte',
-    description: 'Enregistrez restaurants, cafés et idées de voyage depuis Instagram, TikTok et le web sur une carte personnelle.',
-  },
+  seo: seo.fr,
   language: { label: 'Choisir la langue' },
   nav: {
     howItWorks: 'Fonctionnement',

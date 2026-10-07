@@ -4,22 +4,16 @@ import { useI18n } from '../i18n/I18nProvider'
 import { defaultLanguage, languages } from '../i18n'
 import { ROUTES } from '../routes'
 import type { LanguageCode } from '../i18n'
+import { getLocalizedUrl, SITE_URL } from '../i18n/urls'
 
-const SITE_URL = 'https://poisave.com/'
 const SITE_NAME = 'PoiSave'
-const DEFAULT_IMAGE = `${SITE_URL}img/poisave-icon.png`
+const DEFAULT_IMAGE = `${SITE_URL}/img/poisave-icon.png`
 const LOCALES: Record<LanguageCode, string> = {
   en: 'en_GB',
   fr: 'fr_FR',
   it: 'it_IT',
   de: 'de_DE',
   es: 'es_ES',
-}
-
-function getLocalizedUrl(language: LanguageCode) {
-  if (language === defaultLanguage) return SITE_URL
-
-  return `${SITE_URL}?lang=${language}`
 }
 
 function getLegalDescription(intro: string[] | undefined, fallback: string) {
@@ -102,7 +96,7 @@ export default function Seo() {
     const page = legalPages[path]
     const title = page ? `${page.title} | ${SITE_NAME}` : copy.seo.title
     const description = page?.description ?? copy.seo.description
-    const canonicalUrl = path === ROUTES.home ? getLocalizedUrl(language) : SITE_URL
+    const canonicalUrl = path === ROUTES.home ? getLocalizedUrl(language) : getLocalizedUrl(defaultLanguage)
 
     document.title = title
     upsertNameMeta('description', description)
@@ -122,7 +116,7 @@ export default function Seo() {
     languages.forEach((item) => {
       upsertAlternate(item.code, getLocalizedUrl(item.code))
     })
-    upsertAlternate('x-default', SITE_URL)
+    upsertAlternate('x-default', getLocalizedUrl(defaultLanguage))
   }, [copy, language, location.pathname])
 
   return null

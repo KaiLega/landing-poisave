@@ -1,12 +1,10 @@
 import type { Messages } from '../types'
 import en from './en'
+import seo from '../seo.json'
 
 const de: Messages = {
   ...en,
-  seo: {
-    title: 'PoiSave - Orte aus Social Media auf deiner Karte speichern',
-    description: 'Speichere Restaurants, Cafés und Reiseideen aus Instagram, TikTok und dem Web auf einer persönlichen Karte.',
-  },
+  seo: seo.de,
   language: { label: 'Sprache auswählen' },
   nav: {
     howItWorks: 'So funktioniert es',

@@ -1,10 +1,8 @@
 import type { Messages } from '../types'
+import seo from '../seo.json'
 
 const en: Messages = {
-  seo: {
-    title: 'PoiSave - Save places from social media on your map',
-    description: 'Save restaurants, cafes and travel spots from Instagram, TikTok and the web on one personal map.',
-  },
+  seo: seo.en,
   language: {
     label: 'Select language',
   },

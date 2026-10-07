@@ -25,10 +25,6 @@ export default function PricingSection({ plans }: PricingSectionProps) {
   const pricing = copy.home.pricing
   const badges = storeBadges[language]
 
-  const showComingSoon = () => {
-    window.alert('Coming soon')
-  }
-
   return (
     <section id="download" className="pricing-section section">
       <div className="mx-auto px-4 max-w-6xl">
@@ -93,13 +89,18 @@ export default function PricingSection({ plans }: PricingSectionProps) {
               alt={copy.common.appStoreAlt}
             />
           </a>
-          <button type="button" className="store-row__button" onClick={showComingSoon}>
+          <a
+            href={badges.googlePlayUrl}
+            className="store-row__button"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img
               src={badges.googlePlay}
               className="store-row__badge"
               alt={copy.common.googlePlayAlt}
             />
-          </button>
+          </a>
         </div>
       </div>
     </section>

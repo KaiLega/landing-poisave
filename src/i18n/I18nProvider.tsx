@@ -1,14 +1,13 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { defaultLanguage, isLanguageCode, messages } from './index'
 import type { LanguageCode, Messages } from './types'
+import { getLanguageFromPathname, getLocalizedPath } from './urls'
 
 type I18nContextValue = {
   language: LanguageCode
   setLanguage: (language: LanguageCode) => void
   copy: Messages
 }
-
-const STORAGE_KEY = 'poisave-language'
 
 const I18nContext = createContext<I18nContextValue | null>(null)
 
@@ -18,13 +17,7 @@ function getInitialLanguage(): LanguageCode {
   const urlLanguage = new URLSearchParams(window.location.search).get('lang')
   if (isLanguageCode(urlLanguage)) return urlLanguage
 
-  const saved = window.localStorage.getItem(STORAGE_KEY)
-  if (isLanguageCode(saved)) return saved
-
-  const browserLanguage = window.navigator.language.split('-')[0]
-  if (isLanguageCode(browserLanguage)) return browserLanguage
-
-  return defaultLanguage
+  return getLanguageFromPathname(window.location.pathname)
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
@@ -38,18 +31,21 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 
     const url = new URL(window.location.href)
 
-    if (nextLanguage === defaultLanguage) {
-      url.searchParams.delete('lang')
-    } else {
-      url.searchParams.set('lang', nextLanguage)
-    }
-
-    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
+    url.pathname = getLocalizedPath(nextLanguage)
+    url.searchParams.delete('lang')
+    window.location.assign(`${url.pathname}${url.search}${url.hash}`)
   }
 
   useEffect(() => {
     document.documentElement.lang = language
-    window.localStorage.setItem(STORAGE_KEY, language)
+
+    const url = new URL(window.location.href)
+    const legacyLanguage = url.searchParams.get('lang')
+    if (!isLanguageCode(legacyLanguage)) return
+
+    url.pathname = getLocalizedPath(legacyLanguage)
+    url.searchParams.delete('lang')
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
   }, [language])
 
   const value = useMemo<I18nContextValue>(
