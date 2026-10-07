@@ -27,6 +27,10 @@ const it: Messages = {
   common: {
     backHome: 'Torna alla home',
     skipToContent: 'Vai al contenuto',
+    openMenu: 'Apri menu',
+    closeMenu: 'Chiudi menu',
+    mobileNavigation: 'Navigazione mobile',
+    backToTop: 'Torna in cima',
     appStoreAlt: 'Scarica da App Store',
     googlePlayAlt: 'Disponibile su Google Play',
   },

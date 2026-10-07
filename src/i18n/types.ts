@@ -54,6 +54,10 @@ export type Messages = {
   common: {
     backHome: string
     skipToContent: string
+    openMenu: string
+    closeMenu: string
+    mobileNavigation: string
+    backToTop: string
     appStoreAlt: string
     googlePlayAlt: string
   }

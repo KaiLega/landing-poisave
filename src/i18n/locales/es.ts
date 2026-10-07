@@ -25,6 +25,10 @@ const es: Messages = {
   common: {
     backHome: 'Volver al inicio',
     skipToContent: 'Saltar al contenido',
+    openMenu: 'Abrir menú',
+    closeMenu: 'Cerrar menú',
+    mobileNavigation: 'Navegación móvil',
+    backToTop: 'Volver arriba',
     appStoreAlt: 'Descargar en App Store',
     googlePlayAlt: 'Disponible en Google Play',
   },

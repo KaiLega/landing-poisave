@@ -6,6 +6,7 @@ import { ROUTES } from '../routes'
 import LanguageSelector from './LanguageSelector'
 import { useI18n } from '../i18n/I18nProvider'
 import { getLocalizedPath } from '../i18n/urls'
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
 
 type HeaderProps = {
   forceSticky?: boolean
@@ -17,6 +18,7 @@ export default function Header({ forceSticky = false }: HeaderProps){
   const mobileMenuId = useId()
   const { copy, language } = useI18n()
   const location = useLocation()
+  const prefersReducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 24)
@@ -49,7 +51,7 @@ export default function Header({ forceSticky = false }: HeaderProps){
   const showSticky = forceSticky || isScrolled || isMobileMenuOpen
   const mobileLinkClass = 'mobile-nav__link'
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' })
     setIsMobileMenuOpen(false)
   }
 
@@ -91,7 +93,7 @@ export default function Header({ forceSticky = false }: HeaderProps){
         <button
           type="button"
           className={`mobile-menu-button ${showSticky ? 'mobile-menu-button--sticky' : 'mobile-menu-button--resting'}`}
-          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-label={isMobileMenuOpen ? copy.common.closeMenu : copy.common.openMenu}
           aria-expanded={isMobileMenuOpen}
           aria-controls={mobileMenuId}
           onClick={() => setIsMobileMenuOpen((current) => !current)}
@@ -102,7 +104,7 @@ export default function Header({ forceSticky = false }: HeaderProps){
 
       {isMobileMenuOpen && (
         <div id={mobileMenuId} className="mobile-nav md:hidden">
-          <nav className="mobile-nav__panel" aria-label="Mobile navigation">
+          <nav className="mobile-nav__panel" aria-label={copy.common.mobileNavigation}>
             {items.map((item) => (
               <SectionLink
               key={item.sectionId}

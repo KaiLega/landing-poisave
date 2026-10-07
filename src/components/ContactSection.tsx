@@ -82,7 +82,7 @@ export default function ContactSection() {
             </button>
           </div>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form" onSubmit={handleSubmit} aria-busy={status === 'sending'}>
             <label className="contact-form__trap" aria-hidden="true">
               <span>Company</span>
               <input name="company" type="text" tabIndex={-1} autoComplete="off" />
@@ -108,8 +108,15 @@ export default function ContactSection() {
             </button>
 
             {!CONTACT_FORM_ENDPOINT && <p className="contact-form__note">{contact.fallback}</p>}
-            {status === 'success' && <p className="contact-form__status">{contact.success}</p>}
-            {status === 'error' && <p className="contact-form__status contact-form__status--error">{contact.error}</p>}
+            {status === 'sending' && (
+              <p className="sr-only" role="status" aria-live="polite">{contact.sending}</p>
+            )}
+            {status === 'success' && (
+              <p className="contact-form__status" role="status" aria-live="polite">{contact.success}</p>
+            )}
+            {status === 'error' && (
+              <p className="contact-form__status contact-form__status--error" role="alert" aria-live="assertive">{contact.error}</p>
+            )}
           </form>
         </div>
       </div>

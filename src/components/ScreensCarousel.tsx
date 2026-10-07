@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useI18n } from '../i18n/I18nProvider'
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
 
 type Slide = {
   src: string
@@ -16,11 +17,14 @@ function wrapIndex(index: number, length: number) {
 
 export default function ScreensCarousel({ slides }: { slides: Slide[] }) {
   const [active, setActive] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [hasFocusWithin, setHasFocusWithin] = useState(false)
   const [touchStartX, setTouchStartX] = useState<number | null>(null)
   const { copy } = useI18n()
   const carousel = copy.home.carousel
   const activeSlide = slides[active]
+  const prefersReducedMotion = usePrefersReducedMotion()
+  const isPaused = isHovered || hasFocusWithin || prefersReducedMotion
 
   const goToPrevious = () => setActive((current) => wrapIndex(current - 1, slides.length))
   const goToNext = () => setActive((current) => wrapIndex(current + 1, slides.length))
@@ -55,8 +59,14 @@ export default function ScreensCarousel({ slides }: { slides: Slide[] }) {
   return (
     <div
       className="screenshots-shell"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocusCapture={() => setHasFocusWithin(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          setHasFocusWithin(false)
+        }
+      }}
       onTouchStart={(event) => setTouchStartX(event.touches[0].clientX)}
       onTouchEnd={handleTouchEnd}
       onTouchCancel={() => setTouchStartX(null)}

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useI18n } from '../i18n/I18nProvider'
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
 
 export default function BeforeAfterSection() {
   const [position, setPosition] = useState(50)
@@ -7,6 +8,7 @@ export default function BeforeAfterSection() {
   const hasAnimatedRef = useRef(false)
   const { copy } = useI18n()
   const beforeAfter = copy.home.beforeAfter
+  const prefersReducedMotion = usePrefersReducedMotion()
 
   const snapToNearest = () => {
     if (position < 25) {
@@ -23,6 +25,11 @@ export default function BeforeAfterSection() {
   }
 
   useEffect(() => {
+    if (prefersReducedMotion) {
+      setPosition(50)
+      return undefined
+    }
+
     const section = sectionRef.current
     if (!section) return
 
@@ -58,7 +65,7 @@ export default function BeforeAfterSection() {
     observer.observe(section)
 
     return () => observer.disconnect()
-  }, [])
+  }, [prefersReducedMotion])
 
   return (
     <section ref={sectionRef} className="section">

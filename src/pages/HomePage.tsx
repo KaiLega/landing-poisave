@@ -13,6 +13,7 @@ import AppPreviewSection from '../components/AppPreviewSection'
 import FAQSection from '../components/FAQSection'
 import ContactSection from '../components/ContactSection'
 import { useI18n } from '../i18n/I18nProvider'
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
 
 const TRACK_SHOWCASE_VARIANT: 'bleed' | 'panel' = 'bleed'
 
@@ -20,15 +21,19 @@ export default function HomePage() {
   const location = useLocation()
   const { copy } = useI18n()
   const home = copy.home
+  const prefersReducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
     const section = new URLSearchParams(location.search).get('section')
     if (!section) return
 
     requestAnimationFrame(() => {
-      document.getElementById(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      document.getElementById(section)?.scrollIntoView({
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        block: 'start',
+      })
     })
-  }, [location.search])
+  }, [location.search, prefersReducedMotion])
 
   return (
     <>
