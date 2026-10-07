@@ -53,6 +53,7 @@ export type Messages = {
   }
   common: {
     backHome: string
+    skipToContent: string
     appStoreAlt: string
     googlePlayAlt: string
   }

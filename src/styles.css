@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  color: #fff;
+  background: #5a00d1;
+  box-shadow: 0 12px 30px -14px rgba(15, 23, 42, 0.65);
+  transform: translateY(calc(-100% - 1rem));
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
 /* Design tokens */
 :root {
   --grad: linear-gradient(90deg, #ff3b6b 0%, #6a35ff 100%);
@@ -1525,12 +1549,8 @@ body {
 /* FAQ */
 .faq-grid {
   display: grid;
-  gap: 1.5rem;
-}
-
-.faq-column {
-  display: grid;
-  gap: 1rem;
+  column-gap: 1.5rem;
+  row-gap: 1rem;
 }
 
 .faq-card {

@@ -28,4 +28,15 @@ describe('localized pre-render', () => {
     expect(html).not.toContain('href="/?section=')
     expect(html).not.toContain('href="/privacy-policy"')
   })
+
+  it('includes the main landmark, localized skip link and accessible FAQ state', () => {
+    const html = renderHome('it')
+
+    expect(html).toContain('href="#main-content"')
+    expect(html).toContain('Vai al contenuto')
+    expect(html).toContain('<main id="main-content" tabindex="-1">')
+    expect(html).toContain('aria-expanded="true"')
+    expect(html).toContain('aria-controls=')
+    expect(html).toContain('role="region"')
+  })
 })

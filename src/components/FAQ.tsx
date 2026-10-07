@@ -1,43 +1,44 @@
-import React, { useMemo, useState } from 'react'
+import React, { useId, useState } from 'react'
 import { Minus, Plus } from 'lucide-react'
 
 export default function FAQ({items}:{items:{q:string,a:string}[]}){
   const [open, setOpen] = useState<number | null>(0)
-  const columns = useMemo(
-    () => [
-      items.filter((_, index) => index % 2 === 0).map((item, order) => ({ ...item, index: order * 2 })),
-      items.filter((_, index) => index % 2 === 1).map((item, order) => ({ ...item, index: order * 2 + 1 })),
-    ],
-    [items],
-  )
+  const idPrefix = useId()
 
   return (
     <div className="faq-grid">
-      {columns.map((column, columnIndex) => (
-        <div key={columnIndex} className="faq-column">
-          {column.map((it) => {
-            const isOpen = open === it.index
+      {items.map((item, index) => {
+        const isOpen = open === index
+        const triggerId = `${idPrefix}-trigger-${index}`
+        const answerId = `${idPrefix}-answer-${index}`
 
-            return (
-              <article key={it.index} className={`faq-card${isOpen ? ' is-open' : ''}`}>
-                <button
-                  onClick={()=>setOpen(isOpen ? null : it.index)}
-                  className="faq-card__trigger"
-                  type="button"
-                >
-                  <span className="faq-card__question">{it.q}</span>
-                  <span className="faq-card__icon">
-                    {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
-                  </span>
-                </button>
-                {isOpen && (
-                  <div className="faq-card__answer">{it.a}</div>
-                )}
-              </article>
-            )
-          })}
-        </div>
-      ))}
+        return (
+          <article key={item.q} className={`faq-card${isOpen ? ' is-open' : ''}`}>
+            <button
+              id={triggerId}
+              onClick={() => setOpen(isOpen ? null : index)}
+              className="faq-card__trigger"
+              type="button"
+              aria-expanded={isOpen}
+              aria-controls={answerId}
+            >
+              <span className="faq-card__question">{item.q}</span>
+              <span className="faq-card__icon" aria-hidden="true">
+                {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+              </span>
+            </button>
+            <div
+              id={answerId}
+              className="faq-card__answer"
+              role="region"
+              aria-labelledby={triggerId}
+              hidden={!isOpen}
+            >
+              {item.a}
+            </div>
+          </article>
+        )
+      })}
     </div>
   )
 }

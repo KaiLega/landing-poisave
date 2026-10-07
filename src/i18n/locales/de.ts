@@ -24,6 +24,7 @@ const de: Messages = {
   },
   common: {
     backHome: 'Zurück zur Startseite',
+    skipToContent: 'Zum Inhalt springen',
     appStoreAlt: 'Im App Store laden',
     googlePlayAlt: 'Bei Google Play verfügbar',
   },

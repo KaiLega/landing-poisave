@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useId, useRef, useState } from 'react'
 import { Cookie as LinkIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ROUTES } from '../routes'
@@ -9,7 +9,7 @@ export default function CookieBanner(){
   const { copy } = useI18n()
   const t = copy.cookieBanner
   const [visible, setVisible] = useState(false)
-  const [consent, setConsent] = useState<string | null>(null)
+  const [hasLoaded, setHasLoaded] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const [openDesc, setOpenDesc] = useState({
     necessary: false,
@@ -23,25 +23,98 @@ export default function CookieBanner(){
     measurement: false,
     marketing: false
   })
+  const dialogRef = useRef<HTMLDivElement | null>(null)
+  const headingRef = useRef<HTMLHeadingElement | null>(null)
+  const badgeRef = useRef<HTMLButtonElement | null>(null)
+  const restoreFocusToBadgeRef = useRef(false)
+  const dialogTitleId = useId()
+  const dialogDescriptionId = useId()
 
   useEffect(() => {
     const existing = localStorage.getItem(COOKIE_CONSENT_STORAGE_KEY)
     if (!existing) {
       setVisible(true)
     }
-    setConsent(existing)
+    setHasLoaded(true)
   }, [])
+
+  useEffect(() => {
+    if (!visible) return undefined
+
+    const previouslyFocused = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null
+    const previousOverflow = document.body.style.overflow
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',')
+
+    document.body.style.overflow = 'hidden'
+    const focusFrame = window.requestAnimationFrame(() => headingRef.current?.focus())
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        setVisible(false)
+        return
+      }
+
+      if (event.key !== 'Tab') return
+
+      const dialog = dialogRef.current
+      if (!dialog) return
+
+      const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(focusableSelector))
+        .filter((element) => !element.hasAttribute('hidden'))
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (!first || !last) return
+
+      if (event.shiftKey && (document.activeElement === first || document.activeElement === headingRef.current)) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.cancelAnimationFrame(focusFrame)
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = previousOverflow
+      if (!restoreFocusToBadgeRef.current && previouslyFocused?.isConnected) {
+        previouslyFocused.focus()
+      }
+    }
+  }, [visible])
+
+  useEffect(() => {
+    if (visible || !hasLoaded || !restoreFocusToBadgeRef.current) return undefined
+
+    const focusFrame = window.requestAnimationFrame(() => {
+      badgeRef.current?.focus()
+      restoreFocusToBadgeRef.current = false
+    })
+
+    return () => window.cancelAnimationFrame(focusFrame)
+  }, [hasLoaded, visible])
 
   const handleChoice = (value: 'accepted' | 'declined') => {
     localStorage.setItem(COOKIE_CONSENT_STORAGE_KEY, value)
-    setConsent(value)
     setVisible(false)
     notifyCookieConsentChange()
   }
 
   const handleSave = () => {
     localStorage.setItem(COOKIE_CONSENT_STORAGE_KEY, JSON.stringify(prefs))
-    setConsent('custom')
     setVisible(false)
     notifyCookieConsentChange()
   }
@@ -54,16 +127,18 @@ export default function CookieBanner(){
       marketing: value
     })
     localStorage.setItem(COOKIE_CONSENT_STORAGE_KEY, value ? 'accepted' : 'declined')
-    setConsent(value ? 'accepted' : 'declined')
     setVisible(false)
     notifyCookieConsentChange()
   }
 
   if (!visible) {
-    return consent ? (
+    return hasLoaded ? (
       <button
+        ref={badgeRef}
+        type="button"
         className="bottom-5 left-5 z-[70] fixed bg-slate-900 shadow-lg px-3 py-2 rounded-full font-semibold text-white text-xs uppercase tracking-[0.2em] cookie-badge"
         onClick={() => {
+          restoreFocusToBadgeRef.current = true
           setVisible(true)
           setExpanded(false)
         }}
@@ -79,7 +154,14 @@ export default function CookieBanner(){
   return (
     <div className="z-[60] fixed inset-0 bg-slate-900/70 backdrop-blur-sm">
       <div className="absolute inset-0 flex justify-center items-center p-4 overflow-y-auto">
-        <div className="bg-white shadow-2xl p-6 md:p-8 rounded-3xl w-full max-w-4xl">
+        <div
+          ref={dialogRef}
+          className="bg-white shadow-2xl p-6 md:p-8 rounded-3xl w-full max-w-4xl"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={dialogTitleId}
+          aria-describedby={dialogDescriptionId}
+        >
           <div className="flex justify-between items-start gap-4">
             <div className="space-y-2">
               <Link
@@ -89,11 +171,18 @@ export default function CookieBanner(){
               >
                 {t.fullPolicy}
               </Link>
-              <h2 className="font-bold text-slate-900 text-2xl md:text-3xl">{t.title}</h2>
+              <h2
+                ref={headingRef}
+                id={dialogTitleId}
+                className="font-bold text-slate-900 text-2xl md:text-3xl"
+                tabIndex={-1}
+              >
+                {t.title}
+              </h2>
             </div>
           </div>
 
-          <p className="mt-4 text-slate-600 text-sm leading-relaxed">{t.intro}</p>
+          <p id={dialogDescriptionId} className="mt-4 text-slate-600 text-sm leading-relaxed">{t.intro}</p>
 
           <div className="flex flex-wrap gap-3 mt-6">
             <button className="btn-outline btn" onClick={() => applyAll(false)}>
