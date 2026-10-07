@@ -1,22 +1,27 @@
 {
   "en": {
     "title": "PoiSave - Save places from social media on your map",
-    "description": "Save restaurants, cafes and travel spots from Instagram, TikTok and the web on one personal map."
+    "description": "Save restaurants, cafes and travel spots from Instagram, TikTok and the web on one personal map.",
+    "imageAlt": "PoiSave app logo"
   },
   "fr": {
     "title": "PoiSave - Enregistrez les lieux des réseaux sociaux sur votre carte",
-    "description": "Enregistrez restaurants, cafés et idées de voyage depuis Instagram, TikTok et le web sur une carte personnelle."
+    "description": "Enregistrez restaurants, cafés et idées de voyage depuis Instagram, TikTok et le web sur une carte personnelle.",
+    "imageAlt": "Logo de l’application PoiSave"
   },
   "it": {
     "title": "PoiSave - Salva luoghi dai social sulla tua mappa",
-    "description": "Salva ristoranti, bar e mete di viaggio da Instagram, TikTok e web in una sola mappa personale."
+    "description": "Salva ristoranti, bar e mete di viaggio da Instagram, TikTok e web in una sola mappa personale.",
+    "imageAlt": "Logo dell’app PoiSave"
   },
   "de": {
     "title": "PoiSave - Orte aus Social Media auf deiner Karte speichern",
-    "description": "Speichere Restaurants, Cafés und Reiseideen aus Instagram, TikTok und dem Web auf einer persönlichen Karte."
+    "description": "Speichere Restaurants, Cafés und Reiseideen aus Instagram, TikTok und dem Web auf einer persönlichen Karte.",
+    "imageAlt": "Logo der PoiSave-App"
   },
   "es": {
     "title": "PoiSave - Guarda lugares de redes sociales en tu mapa",
-    "description": "Guarda restaurantes, cafeterías e ideas de viaje de Instagram, TikTok y la web en un mapa personal."
+    "description": "Guarda restaurantes, cafeterías e ideas de viaje de Instagram, TikTok y la web en un mapa personal.",
+    "imageAlt": "Logo de la app PoiSave"
   }
 }

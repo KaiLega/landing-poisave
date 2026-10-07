@@ -127,6 +127,7 @@ const es: Messages = {
     ...en.home,
     hero: {
       ...en.home.hero,
+      imageAlt: 'Vista previa de la app PoiSave con el mapa de lugares guardados',
       kicker: 'app móvil poisave',
       title: 'Guarda lugares de Instagram, TikTok y más en tu mapa personal',
       text: 'Convierte posts sociales en pines del mapa, limpia los detalles y organiza restaurantes, cafeterías y viajes en un solo lugar útil.',
@@ -156,9 +157,9 @@ const es: Messages = {
       title: 'Pega un enlace, ajusta los detalles y guarda el lugar en tu mapa.',
       lead: 'Pasa de un post social a un lugar guardado en tres pasos rápidos, sin perder la información útil.',
       steps: [
-        { ...en.home.howItWorks.steps[0], title: 'Pega un enlace social', description: 'Añade una URL de Instagram o TikTok y revisa la vista previa antes de guardar.' },
-        { ...en.home.howItWorks.steps[1], title: 'Pega una descripción o sube una captura', description: 'PoiSave extrae el texto útil y guarda los detalles necesarios para crear tu punto de interés.' },
-        { ...en.home.howItWorks.steps[2], title: 'Ve todo en tu mapa', description: 'Abre la lista y el mapa para decidir dónde ir con todos tus sitios en un solo lugar.' },
+        { ...en.home.howItWorks.steps[0], alt: 'Pantalla de PoiSave para guardar rápidamente un lugar', title: 'Pega un enlace social', description: 'Añade una URL de Instagram o TikTok y revisa la vista previa antes de guardar.' },
+        { ...en.home.howItWorks.steps[1], alt: 'Pantalla de PoiSave para revisar los detalles de un lugar', title: 'Pega una descripción o sube una captura', description: 'PoiSave extrae el texto útil y guarda los detalles necesarios para crear tu punto de interés.' },
+        { ...en.home.howItWorks.steps[2], alt: 'Mapa de PoiSave con los lugares guardados', title: 'Ve todo en tu mapa', description: 'Abre la lista y el mapa para decidir dónde ir con todos tus sitios en un solo lugar.' },
       ],
     },
     bannerCta: {
@@ -169,6 +170,8 @@ const es: Messages = {
     },
     beforeAfter: {
       ...en.home.beforeAfter,
+      beforeAlt: 'Lugares guardados y dispersos entre Instagram y TikTok antes de PoiSave',
+      afterAlt: 'Mapa organizado con los lugares guardados en la app PoiSave',
       title: 'Convierte lugares guardados en redes sociales en un mapa organizado',
       lead: 'Arrastra para ver cómo PoiSave convierte Instagram, TikTok y la web en pines organizados fáciles de encontrar.',
       rangeLabel: 'Comparar antes y después de PoiSave',
@@ -176,6 +179,7 @@ const es: Messages = {
     },
     collectors: {
       ...en.home.collectors,
+      imageAlt: 'Detalles de un lugar guardado en la app PoiSave',
       typingText: `Nombre del restaurante
 Calle ejemplo 3, Roma
 Precio: 20€
@@ -192,6 +196,7 @@ Restaurante con vistas al Coliseo, perfecto para una cita o una cena en solitari
     },
     track: {
       ...en.home.track,
+      imageAlt: 'Colección de lugares guardados en la app PoiSave',
       kicker: 'Un lugar, todos tus hallazgos',
       title: 'Controla todos tus lugares favoritos en un solo lugar',
       lead: 'PoiSave conecta descubrimiento y planificación. Tu lista de fin de semana, escapada o mapa foodie queda organizada desde el inicio.',
@@ -231,11 +236,11 @@ Restaurante con vistas al Coliseo, perfecto para una cita o una cena en solitari
       showLabel: 'Mostrar',
       goToLabel: 'Ir a la vista',
       slides: [
-        { ...en.home.carousel.slides[0], eyebrow: 'Mapa', title: 'Ve todos tus lugares en el mapa', description: 'Convierte hallazgos sociales en lugares guardados.' },
-        { ...en.home.carousel.slides[1], eyebrow: 'Notas', title: 'Pega una descripción o escribe la tuya', description: 'Añade los detalles antes de guardar.' },
-        { ...en.home.carousel.slides[2], eyebrow: 'Colecciones', title: 'Explora tus lugares guardados', description: 'Filtra tu lista sin cambiar de app.' },
-        { ...en.home.carousel.slides[3], eyebrow: 'Detalles', title: 'Abre un pin y revisa los detalles', description: 'Notas, dirección y categoría de un vistazo.' },
-        { ...en.home.carousel.slides[4], eyebrow: 'Favoritos', title: 'Mira lo que destaca', description: 'Añade los lugares que te gustan.' },
+        { ...en.home.carousel.slides[0], alt: 'Mapa de PoiSave con pines de los lugares guardados', eyebrow: 'Mapa', title: 'Ve todos tus lugares en el mapa', description: 'Convierte hallazgos sociales en lugares guardados.' },
+        { ...en.home.carousel.slides[1], alt: 'Formulario de PoiSave para introducir la descripción de un vídeo', eyebrow: 'Notas', title: 'Pega una descripción o escribe la tuya', description: 'Añade los detalles antes de guardar.' },
+        { ...en.home.carousel.slides[2], alt: 'Lista de puntos de interés guardados en PoiSave', eyebrow: 'Colecciones', title: 'Explora tus lugares guardados', description: 'Filtra tu lista sin cambiar de app.' },
+        { ...en.home.carousel.slides[3], alt: 'Ficha de PoiSave con los detalles de un lugar', eyebrow: 'Detalles', title: 'Abre un pin y revisa los detalles', description: 'Notas, dirección y categoría de un vistazo.' },
+        { ...en.home.carousel.slides[4], alt: 'Pantalla de estadísticas de PoiSave', eyebrow: 'Favoritos', title: 'Mira lo que destaca', description: 'Añade los lugares que te gustan.' },
       ],
     },
     contact: {

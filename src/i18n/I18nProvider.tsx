@@ -5,7 +5,6 @@ import { getLanguageFromPathname, getLocalizedPath } from './urls'
 
 type I18nContextValue = {
   language: LanguageCode
-  setLanguage: (language: LanguageCode) => void
   copy: Messages
 }
 
@@ -20,21 +19,15 @@ function getInitialLanguage(): LanguageCode {
   return getLanguageFromPathname(window.location.pathname)
 }
 
-export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<LanguageCode>(getInitialLanguage)
+export function I18nProvider({
+  children,
+  initialLanguage,
+}: {
+  children: React.ReactNode
+  initialLanguage?: LanguageCode
+}) {
+  const [language] = useState<LanguageCode>(() => initialLanguage ?? getInitialLanguage())
   const copy = messages[language]
-
-  const setLanguage = (nextLanguage: LanguageCode) => {
-    setLanguageState(nextLanguage)
-
-    if (typeof window === 'undefined') return
-
-    const url = new URL(window.location.href)
-
-    url.pathname = getLocalizedPath(nextLanguage)
-    url.searchParams.delete('lang')
-    window.location.assign(`${url.pathname}${url.search}${url.hash}`)
-  }
 
   useEffect(() => {
     document.documentElement.lang = language
@@ -51,7 +44,6 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo<I18nContextValue>(
     () => ({
       language,
-      setLanguage,
       copy,
     }),
     [copy, language],

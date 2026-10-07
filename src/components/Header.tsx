@@ -1,10 +1,11 @@
 import React, { useEffect, useId, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import SectionLink from './SectionLink'
 import { ROUTES } from '../routes'
 import LanguageSelector from './LanguageSelector'
 import { useI18n } from '../i18n/I18nProvider'
+import { getLocalizedPath } from '../i18n/urls'
 
 type HeaderProps = {
   forceSticky?: boolean
@@ -14,7 +15,7 @@ export default function Header({ forceSticky = false }: HeaderProps){
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const mobileMenuId = useId()
-  const { copy } = useI18n()
+  const { copy, language } = useI18n()
   const location = useLocation()
 
   useEffect(() => {
@@ -55,8 +56,8 @@ export default function Header({ forceSticky = false }: HeaderProps){
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${showSticky ? 'nav-blur border-b border-white/20' : 'border-b border-transparent bg-transparent'}`}>
       <div className="flex justify-between items-center mx-auto px-4 max-w-6xl h-16">
-        <Link
-          to={ROUTES.home}
+        <a
+          href={getLocalizedPath(language)}
           className="flex items-center gap-2 font-semibold header-brand"
           onClick={(event) => {
             if (location.pathname !== ROUTES.home) return
@@ -69,8 +70,11 @@ export default function Header({ forceSticky = false }: HeaderProps){
             src={showSticky ? "/img/logo.png" : "/img/poisave-logo-horizontal-light.png"}
             className="header-brand__img"
             alt="poisave"
+            width={showSticky ? 600 : 2426}
+            height={showSticky ? 180 : 647}
+            decoding="async"
           />
-        </Link>
+        </a>
         <nav className="hidden md:flex items-center gap-7 font-medium text-base">
           {items.map(it => (
             <SectionLink

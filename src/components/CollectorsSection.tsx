@@ -31,7 +31,14 @@ export default function CollectorsSection() {
     <section className="section">
       <div className="items-center gap-10 grid lg:grid-cols-2 mx-auto px-4 max-w-6xl">
         <div className="collectors-demo split-showcase split-showcase--dark">
-          <img src="/img/intro2b.png" alt={collectors.imageAlt} />
+          <img
+            src="/img/intro/intro2b.png"
+            alt={collectors.imageAlt}
+            width="1149"
+            height="2086"
+            loading="lazy"
+            decoding="async"
+          />
           <div className="collectors-demo__typing" aria-hidden="true">
             <span className="collectors-demo__typing-text">{typingText.slice(0, visibleChars)}</span>
           </div>

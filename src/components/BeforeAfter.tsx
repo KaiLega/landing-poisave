@@ -71,14 +71,28 @@ export default function BeforeAfterSection() {
 
         <div className="mt-12 before-after">
           <div className="before-after__layer before-after__layer--before">
-            <img src="/img/before-after/before.png" alt={beforeAfter.beforeAlt} />
+            <img
+              src="/img/before-after/before.png"
+              alt={beforeAfter.beforeAlt}
+              width="1536"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
           <div
             className="before-after__layer before-after__layer--after"
             style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
           >
-            <img src="/img/before-after/after.png" alt={beforeAfter.afterAlt} />
+            <img
+              src="/img/before-after/after.png"
+              alt={beforeAfter.afterAlt}
+              width="1536"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
           <div className="before-after__handle" style={{ left: `${position}%` }}>

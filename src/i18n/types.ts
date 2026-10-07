@@ -30,6 +30,7 @@ export type Messages = {
   seo: {
     title: string
     description: string
+    imageAlt: string
   }
   language: {
     label: string

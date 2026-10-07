@@ -306,6 +306,7 @@ body {
   color: #334155;
   font-weight: 750;
   text-align: left;
+  text-decoration: none;
 }
 
 .language-selector__option:hover,

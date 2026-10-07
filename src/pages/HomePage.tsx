@@ -8,7 +8,6 @@ import DiscoverSection from '../components/DiscoverSection'
 import CollectorsSection from '../components/CollectorsSection'
 import FeaturesOverviewSection from '../components/FeaturesOverviewSection'
 import PricingSection from '../components/PricingSection'
-import { toSectionPath } from '../routes'
 import BeforeAfter from '../components/BeforeAfter'
 import AppPreviewSection from '../components/AppPreviewSection'
 import FAQSection from '../components/FAQSection'
@@ -44,7 +43,7 @@ export default function HomePage() {
         eyebrow={home.bannerCta.eyebrow}
         title={home.bannerCta.title}
         description={home.bannerCta.description}
-        to={toSectionPath('download')}
+        sectionId="download"
         buttonLabel={home.bannerCta.buttonLabel}
       />
 

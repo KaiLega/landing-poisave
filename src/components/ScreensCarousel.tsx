@@ -81,7 +81,14 @@ export default function ScreensCarousel({ slides }: { slides: Slide[] }) {
               aria-label={`${carousel.showLabel} ${slide.title}`}
               aria-current={offset === 0 ? 'true' : undefined}
             >
-              <img src={slide.src} alt={slide.alt} />
+              <img
+                src={slide.src}
+                alt={slide.alt}
+                width="1149"
+                height="2086"
+                loading="lazy"
+                decoding="async"
+              />
             </button>
           )
         })}

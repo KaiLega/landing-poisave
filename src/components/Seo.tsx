@@ -107,11 +107,13 @@ export default function Seo() {
     upsertPropertyMeta('og:description', description)
     upsertPropertyMeta('og:url', canonicalUrl)
     upsertPropertyMeta('og:image', DEFAULT_IMAGE)
+    upsertPropertyMeta('og:image:alt', copy.seo.imageAlt)
     upsertPropertyMeta('og:locale', LOCALES[language])
     upsertNameMeta('twitter:card', 'summary')
     upsertNameMeta('twitter:title', title)
     upsertNameMeta('twitter:description', description)
     upsertNameMeta('twitter:image', DEFAULT_IMAGE)
+    upsertNameMeta('twitter:image:alt', copy.seo.imageAlt)
 
     languages.forEach((item) => {
       upsertAlternate(item.code, getLocalizedUrl(item.code))

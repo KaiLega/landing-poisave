@@ -127,6 +127,7 @@ const fr: Messages = {
     ...en.home,
     hero: {
       ...en.home.hero,
+      imageAlt: 'Aperçu de l’application PoiSave avec la carte des lieux enregistrés',
       kicker: 'application mobile poisave',
       title: 'Enregistrez les lieux trouvés sur Instagram, TikTok et ailleurs sur votre carte',
       text: 'Transformez les posts sociaux en repères sur la carte, corrigez les détails et organisez restaurants, cafés et voyages au même endroit.',
@@ -156,9 +157,9 @@ const fr: Messages = {
       title: 'Collez un lien, ajustez les détails et gardez le lieu sur votre carte.',
       lead: 'Passez d’un post social à un lieu enregistré en trois étapes rapides, sans perdre les informations utiles.',
       steps: [
-        { ...en.home.howItWorks.steps[0], title: 'Collez un lien social', description: 'Ajoutez une URL Instagram ou TikTok et ouvrez l’aperçu avant d’enregistrer.' },
-        { ...en.home.howItWorks.steps[1], title: 'Collez une description ou importez une capture', description: 'PoiSave extrait le texte utile et conserve les détails nécessaires au point d’intérêt.' },
-        { ...en.home.howItWorks.steps[2], title: 'Tout voir sur la carte', description: 'Ouvrez la liste et la carte pour décider où aller avec tous vos spots au même endroit.' },
+        { ...en.home.howItWorks.steps[0], alt: 'Écran PoiSave pour enregistrer rapidement un lieu', title: 'Collez un lien social', description: 'Ajoutez une URL Instagram ou TikTok et ouvrez l’aperçu avant d’enregistrer.' },
+        { ...en.home.howItWorks.steps[1], alt: 'Écran PoiSave pour vérifier les détails d’un lieu', title: 'Collez une description ou importez une capture', description: 'PoiSave extrait le texte utile et conserve les détails nécessaires au point d’intérêt.' },
+        { ...en.home.howItWorks.steps[2], alt: 'Carte PoiSave avec les lieux enregistrés', title: 'Tout voir sur la carte', description: 'Ouvrez la liste et la carte pour décider où aller avec tous vos spots au même endroit.' },
       ],
     },
     bannerCta: {
@@ -169,6 +170,8 @@ const fr: Messages = {
     },
     beforeAfter: {
       ...en.home.beforeAfter,
+      beforeAlt: 'Lieux enregistrés et dispersés entre Instagram et TikTok avant PoiSave',
+      afterAlt: 'Carte organisée avec les lieux enregistrés dans l’application PoiSave',
       title: 'Transformez les lieux sauvegardés sur les réseaux en une carte organisée',
       lead: 'Faites glisser pour voir comment PoiSave transforme Instagram, TikTok et le web en repères organisés.',
       rangeLabel: 'Comparer avant et après PoiSave',
@@ -176,6 +179,7 @@ const fr: Messages = {
     },
     collectors: {
       ...en.home.collectors,
+      imageAlt: 'Détails d’un lieu enregistré dans l’application PoiSave',
       typingText: `Nom du restaurant
 Rue exemple 3, Rome
 Prix : 20€
@@ -192,6 +196,7 @@ Restaurant avec vue sur le Colisée, parfait pour un dîner en solo ou à deux. 
     },
     track: {
       ...en.home.track,
+      imageAlt: 'Collection de lieux enregistrés dans l’application PoiSave',
       kicker: 'Un endroit, toutes vos trouvailles',
       title: 'Suivez tous vos lieux préférés au même endroit',
       lead: 'PoiSave relie découverte et planification. Week-ends, city breaks et cartes food restent structurés dès le départ.',
@@ -266,11 +271,11 @@ Restaurant avec vue sur le Colisée, parfait pour un dîner en solo ou à deux. 
       showLabel: 'Afficher',
       goToLabel: 'Aller à l’aperçu',
       slides: [
-        { ...en.home.carousel.slides[0], eyebrow: 'Carte', title: 'Voyez tous vos lieux sur la carte', description: 'Transformez vos découvertes sociales en lieux enregistrés.' },
-        { ...en.home.carousel.slides[1], eyebrow: 'Notes', title: 'Collez une description ou écrivez la vôtre', description: 'Ajoutez les détails utiles avant d’enregistrer.' },
-        { ...en.home.carousel.slides[2], eyebrow: 'Collections', title: 'Parcourez vos lieux enregistrés', description: 'Filtrez votre liste sans changer d’app.' },
-        { ...en.home.carousel.slides[3], eyebrow: 'Détails', title: 'Ouvrez un pin et vérifiez les détails', description: 'Notes, adresse et catégorie en un coup d’œil.' },
-        { ...en.home.carousel.slides[4], eyebrow: 'Favoris', title: 'Repérez ce qui compte', description: 'Ajoutez les lieux que vous aimez.' },
+        { ...en.home.carousel.slides[0], alt: 'Carte PoiSave avec les repères des lieux enregistrés', eyebrow: 'Carte', title: 'Voyez tous vos lieux sur la carte', description: 'Transformez vos découvertes sociales en lieux enregistrés.' },
+        { ...en.home.carousel.slides[1], alt: 'Formulaire PoiSave pour saisir la description d’une vidéo', eyebrow: 'Notes', title: 'Collez une description ou écrivez la vôtre', description: 'Ajoutez les détails utiles avant d’enregistrer.' },
+        { ...en.home.carousel.slides[2], alt: 'Liste des points d’intérêt enregistrés dans PoiSave', eyebrow: 'Collections', title: 'Parcourez vos lieux enregistrés', description: 'Filtrez votre liste sans changer d’app.' },
+        { ...en.home.carousel.slides[3], alt: 'Fiche PoiSave avec les détails d’un lieu', eyebrow: 'Détails', title: 'Ouvrez un pin et vérifiez les détails', description: 'Notes, adresse et catégorie en un coup d’œil.' },
+        { ...en.home.carousel.slides[4], alt: 'Écran des statistiques de PoiSave', eyebrow: 'Favoris', title: 'Repérez ce qui compte', description: 'Ajoutez les lieux que vous aimez.' },
       ],
     },
   },

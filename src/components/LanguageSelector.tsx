@@ -1,7 +1,9 @@
 import React, { useEffect, useId, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { languages } from '../i18n'
 import { useI18n } from '../i18n/I18nProvider'
-import type { LanguageCode } from '../i18n'
+import { getLocalizedHashRoute, getLocalizedPath } from '../i18n/urls'
+import { ROUTES } from '../routes'
 
 type LanguageSelectorProps = {
   variant?: 'header' | 'footer'
@@ -10,10 +12,16 @@ type LanguageSelectorProps = {
 
 export default function LanguageSelector({ variant = 'header', isLight = false }: LanguageSelectorProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const { language, setLanguage, copy } = useI18n()
+  const { language, copy } = useI18n()
   const rootRef = useRef<HTMLDivElement | null>(null)
   const listboxId = useId()
   const activeLanguage = languages.find((item) => item.code === language) ?? languages[0]
+  const location = useLocation()
+
+  const getLanguageHref = (code: (typeof languages)[number]['code']) => {
+    if (location.pathname === ROUTES.home) return getLocalizedPath(code)
+    return getLocalizedHashRoute(code, `${location.pathname}${location.search}`)
+  }
 
   useEffect(() => {
     if (!isOpen) return undefined
@@ -39,11 +47,6 @@ export default function LanguageSelector({ variant = 'header', isLight = false }
     }
   }, [isOpen])
 
-  const chooseLanguage = (code: LanguageCode) => {
-    setLanguage(code)
-    setIsOpen(false)
-  }
-
   return (
     <div
       ref={rootRef}
@@ -52,7 +55,7 @@ export default function LanguageSelector({ variant = 'header', isLight = false }
       <button
         type="button"
         className="language-selector__button"
-        aria-haspopup="listbox"
+        aria-haspopup="menu"
         aria-expanded={isOpen}
         aria-controls={listboxId}
         aria-label={copy.language.label}
@@ -65,23 +68,29 @@ export default function LanguageSelector({ variant = 'header', isLight = false }
         <span className="language-selector__chevron" aria-hidden="true" />
       </button>
 
-      {isOpen && (
-        <div id={listboxId} className="language-selector__menu" role="listbox" aria-label={copy.language.label}>
-          {languages.map((item) => (
-            <button
-              key={item.code}
-              type="button"
-              className={`language-selector__option${item.code === language ? ' is-selected' : ''}`}
-              role="option"
-              aria-selected={item.code === language}
-              onClick={() => chooseLanguage(item.code)}
-            >
-              <img className="language-selector__flag" src={item.flagSrc} alt="" aria-hidden="true" />
-              <span>{item.label}</span>
-            </button>
-          ))}
-        </div>
-      )}
+      <div
+        id={listboxId}
+        className="language-selector__menu"
+        role="menu"
+        aria-label={copy.language.label}
+        hidden={!isOpen}
+      >
+        {languages.map((item) => (
+          <a
+            key={item.code}
+            href={getLanguageHref(item.code)}
+            className={`language-selector__option${item.code === language ? ' is-selected' : ''}`}
+            role="menuitem"
+            aria-current={item.code === language ? 'page' : undefined}
+            hrefLang={item.code}
+            lang={item.code}
+            onClick={() => setIsOpen(false)}
+          >
+            <img className="language-selector__flag" src={item.flagSrc} alt="" aria-hidden="true" />
+            <span>{item.label}</span>
+          </a>
+        ))}
+      </div>
     </div>
   )
 }

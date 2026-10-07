@@ -16,7 +16,14 @@ export default function TrackShowcase({ variant = 'bleed' }: TrackShowcaseProps)
         <div className="mx-auto max-w-6xl px-4">
           <div className="goal-band__grid">
             <div className={`goal-band__device goal-band__device--${variant}`}>
-              <img src="/img/intro/intro3.png" alt={track.imageAlt} />
+              <img
+                src="/img/intro/intro3.png"
+                alt={track.imageAlt}
+                width="1149"
+                height="2086"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
 
             <div className={`goal-band__content goal-band__content--${variant}`}>

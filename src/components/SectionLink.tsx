@@ -1,7 +1,9 @@
 import React from 'react'
 import type { ReactNode } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { ROUTES, toSectionPath } from '../routes'
+import { useLocation } from 'react-router-dom'
+import { useI18n } from '../i18n/I18nProvider'
+import { getLocalizedPath } from '../i18n/urls'
+import { ROUTES } from '../routes'
 
 type SectionLinkProps = {
   sectionId: string
@@ -11,27 +13,30 @@ type SectionLinkProps = {
 }
 
 export default function SectionLink({ sectionId, className, children, onClick }: SectionLinkProps) {
-  const navigate = useNavigate()
   const location = useLocation()
-  const to = toSectionPath(sectionId)
+  const { language } = useI18n()
+  const homePath = getLocalizedPath(language)
 
   return (
-    <Link
-      to={to}
+    <a
+      href={homePath}
       className={className}
       onClick={(event) => {
         onClick?.()
 
-        if (location.pathname !== ROUTES.home) return
+        if (location.pathname !== ROUTES.home) {
+          event.preventDefault()
+          window.location.assign(`${homePath}#/?section=${encodeURIComponent(sectionId)}`)
+          return
+        }
 
         event.preventDefault()
-        navigate(to)
         requestAnimationFrame(() => {
           document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
         })
       }}
     >
       {children}
-    </Link>
+    </a>
   )
 }

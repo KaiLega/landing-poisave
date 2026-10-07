@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import SectionLink from './SectionLink'
 
 type BannerCTAProps = {
   eyebrow?: string
   title: string
   description?: string
   buttonLabel: string
-  to: string
+  sectionId: string
 }
 
 export default function BannerCTA({
@@ -14,7 +14,7 @@ export default function BannerCTA({
   title,
   description,
   buttonLabel,
-  to,
+  sectionId,
 }: BannerCTAProps) {
   return (
     <section className="banner-cta coming-anim">
@@ -23,9 +23,9 @@ export default function BannerCTA({
         <span className="banner-cta__eyebrow">{eyebrow}</span>
         <h2 className="banner-cta__title">{title}</h2>
         {description ? <p className="banner-cta__description">{description}</p> : null}
-        <Link to={to} className="banner-cta__button">
+        <SectionLink sectionId={sectionId} className="banner-cta__button">
           {buttonLabel}
-        </Link>
+        </SectionLink>
       </div>
     </section>
   )

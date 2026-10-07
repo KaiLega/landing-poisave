@@ -138,6 +138,7 @@ const it: Messages = {
     ...en.home,
     hero: {
       ...en.home.hero,
+      imageAlt: 'Anteprima dell’app PoiSave con la mappa dei luoghi salvati',
       kicker: 'app mobile poisave',
       title: 'Salva luoghi da Instagram, TikTok e altri social sulla tua mappa personale',
       text: 'Trasforma i post social in pin sulla mappa, sistema i dettagli e organizza ristoranti, bar e mete di viaggio in un solo posto utile.',
@@ -167,9 +168,9 @@ const it: Messages = {
       title: 'Incolla un link, rifinisci i dettagli e conserva il luogo sulla tua mappa.',
       lead: 'Passa da un post social a un luogo salvato in tre passaggi rapidi, senza perdere le informazioni utili.',
       steps: [
-        { ...en.home.howItWorks.steps[0], title: 'Incolla un link social', description: 'Inserisci un URL Instagram o TikTok e apri l’anteprima prima di salvare.' },
-        { ...en.home.howItWorks.steps[1], title: 'Incolla una descrizione o carica uno screenshot', description: 'PoiSave estrae il testo utile e salva i dettagli necessari per creare il tuo punto di interesse.' },
-        { ...en.home.howItWorks.steps[2], title: 'Vedi tutto sulla mappa', description: 'Apri lista e mappa per decidere dove andare con tutti i tuoi luoghi in un posto solo.' },
+        { ...en.home.howItWorks.steps[0], alt: 'Schermata PoiSave per salvare rapidamente un luogo', title: 'Incolla un link social', description: 'Inserisci un URL Instagram o TikTok e apri l’anteprima prima di salvare.' },
+        { ...en.home.howItWorks.steps[1], alt: 'Schermata PoiSave per controllare i dettagli di un luogo', title: 'Incolla una descrizione o carica uno screenshot', description: 'PoiSave estrae il testo utile e salva i dettagli necessari per creare il tuo punto di interesse.' },
+        { ...en.home.howItWorks.steps[2], alt: 'Mappa PoiSave con i luoghi salvati', title: 'Vedi tutto sulla mappa', description: 'Apri lista e mappa per decidere dove andare con tutti i tuoi luoghi in un posto solo.' },
       ],
     },
     bannerCta: {
@@ -180,6 +181,8 @@ const it: Messages = {
     },
     beforeAfter: {
       ...en.home.beforeAfter,
+      beforeAlt: 'Luoghi salvati e dispersi tra Instagram e TikTok prima di usare PoiSave',
+      afterAlt: 'Mappa organizzata con i luoghi salvati nell’app PoiSave',
       kicker: 'Prima / Dopo',
       title: 'Trasforma i luoghi salvati sui social in una mappa organizzata',
       lead: 'Trascina per vedere come PoiSave trasforma luoghi da Instagram, TikTok e web in pin organizzati da ritrovare facilmente.',
@@ -188,6 +191,7 @@ const it: Messages = {
     },
     collectors: {
       ...en.home.collectors,
+      imageAlt: 'Dettagli di un luogo salvato nell’app PoiSave',
       typingText: `Nome ristorante
 Via esempio 3, Roma
 Costo: 20€
@@ -204,6 +208,7 @@ Ristorante con vista sul Colosseo, perfetto per una cena romantica o da soli. La
     },
     track: {
       ...en.home.track,
+      imageAlt: 'Raccolta di luoghi salvati nell’app PoiSave',
       kicker: 'Un posto, tutti i tuoi luoghi',
       title: 'Tieni tutti i tuoi luoghi preferiti in un solo posto',
       lead: 'Usa PoiSave come ponte tra scoperta e pianificazione. Weekend, city break e mappe food restano ordinati dall’inizio.',
@@ -278,11 +283,11 @@ Ristorante con vista sul Colosseo, perfetto per una cena romantica o da soli. La
       showLabel: 'Mostra',
       goToLabel: 'Vai all’anteprima',
       slides: [
-        { ...en.home.carousel.slides[0], eyebrow: 'Mappa', title: 'Vedi tutti i luoghi salvati sulla mappa', description: 'Trasforma scoperte social in luoghi salvati.' },
-        { ...en.home.carousel.slides[1], eyebrow: 'Note', title: 'Incolla una descrizione o scrivi la tua', description: 'Aggiungi i dettagli utili prima di salvare.' },
-        { ...en.home.carousel.slides[2], eyebrow: 'Raccolte', title: 'Sfoglia i luoghi salvati', description: 'Filtra la lista senza cambiare app.' },
-        { ...en.home.carousel.slides[3], eyebrow: 'Dettagli', title: 'Apri un pin e controlla i dettagli', description: 'Note, indirizzo e categoria a colpo d’occhio.' },
-        { ...en.home.carousel.slides[4], eyebrow: 'Preferiti', title: 'Vedi cosa spicca', description: 'Aggiungi i luoghi che ami.' },
+        { ...en.home.carousel.slides[0], alt: 'Mappa PoiSave con i pin dei luoghi salvati', eyebrow: 'Mappa', title: 'Vedi tutti i luoghi salvati sulla mappa', description: 'Trasforma scoperte social in luoghi salvati.' },
+        { ...en.home.carousel.slides[1], alt: 'Modulo PoiSave per inserire la descrizione di un video', eyebrow: 'Note', title: 'Incolla una descrizione o scrivi la tua', description: 'Aggiungi i dettagli utili prima di salvare.' },
+        { ...en.home.carousel.slides[2], alt: 'Lista dei punti di interesse salvati in PoiSave', eyebrow: 'Raccolte', title: 'Sfoglia i luoghi salvati', description: 'Filtra la lista senza cambiare app.' },
+        { ...en.home.carousel.slides[3], alt: 'Scheda PoiSave con i dettagli di un luogo', eyebrow: 'Dettagli', title: 'Apri un pin e controlla i dettagli', description: 'Note, indirizzo e categoria a colpo d’occhio.' },
+        { ...en.home.carousel.slides[4], alt: 'Schermata delle statistiche di PoiSave', eyebrow: 'Preferiti', title: 'Vedi cosa spicca', description: 'Aggiungi i luoghi che ami.' },
       ],
     },
   },

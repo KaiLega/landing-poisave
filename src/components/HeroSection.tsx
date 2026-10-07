@@ -17,7 +17,13 @@ export default function HeroSection({ benefits }: HeroSectionProps) {
       <div className="items-center gap-12 grid lg:grid-cols-[0.9fr_1.1fr] mx-auto px-4 max-w-6xl">
         <div className="order-2 lg:order-1 hero-visual">
           <div className="hero-img">
-            <img src="/img/intro/intro1.png" alt={hero.imageAlt} />
+            <img
+              src="/img/intro/intro1.png"
+              alt={hero.imageAlt}
+              width="1149"
+              height="2086"
+              decoding="async"
+            />
             <div className="hero-floating-card--top hero-floating-card">
               <span>{hero.topCard}</span>
             </div>

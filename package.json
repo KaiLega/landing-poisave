@@ -9,6 +9,7 @@
     "dev": "vite",
     "prebuild": "npm run generate:locales",
     "build": "tsc -b && vite build",
+    "postbuild": "node scripts/prerender-localized-pages.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run"

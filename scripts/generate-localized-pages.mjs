@@ -39,9 +39,11 @@ for (const [language, ogLocale] of Object.entries(locales)) {
   html = replaceMeta(html, 'property="og:title"', metadata.title)
   html = replaceMeta(html, 'property="og:description"', metadata.description)
   html = replaceMeta(html, 'property="og:url"', localizedUrl)
+  html = replaceMeta(html, 'property="og:image:alt"', metadata.imageAlt)
   html = replaceMeta(html, 'property="og:locale"', ogLocale)
   html = replaceMeta(html, 'name="twitter:title"', metadata.title)
   html = replaceMeta(html, 'name="twitter:description"', metadata.description)
+  html = replaceMeta(html, 'name="twitter:image:alt"', metadata.imageAlt)
   html = html
     .replace(
       /("description":\s*)"[^"]*"/,

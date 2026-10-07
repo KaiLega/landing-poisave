@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getLanguageFromPathname, getLocalizedPath, getLocalizedUrl } from './urls'
+import { getLanguageFromPathname, getLocalizedHashRoute, getLocalizedPath, getLocalizedUrl } from './urls'
 
 describe('localized URLs', () => {
   it('keeps English on the root URL', () => {
@@ -15,6 +15,11 @@ describe('localized URLs', () => {
   it('reads the language from a localized pathname', () => {
     expect(getLanguageFromPathname('/it/')).toBe('it')
     expect(getLanguageFromPathname('/de/')).toBe('de')
+  })
+
+  it('builds hash routes compatible with GitHub Pages', () => {
+    expect(getLocalizedHashRoute('it', '/privacy-policy')).toBe('/it/#/privacy-policy')
+    expect(getLocalizedHashRoute('en', '/terms-of-use')).toBe('/#/terms-of-use')
   })
 
   it('falls back to English for unrelated paths', () => {

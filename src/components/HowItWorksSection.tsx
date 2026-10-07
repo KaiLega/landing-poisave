@@ -50,7 +50,14 @@ export default function HowItWorksSection({ steps }: { steps: Step[] }) {
 
           <div className="how-it-works__visual">
             <div className="how-it-works__frame">
-              <img src={activeStep.image} alt={activeStep.alt} />
+              <img
+                src={activeStep.image}
+                alt={activeStep.alt}
+                width="1149"
+                height="2086"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </div>
